@@ -8,17 +8,17 @@ import { getDatabase } from "firebase/database";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyAOv8NOAgO7sdKzguXBwC6E9IG86s4dWeA",
-    authDomain: "medilacconsulting.firebaseapp.com",
-    databaseURL: "https://medilacconsulting-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "medilacconsulting",
-    storageBucket: "medilacconsulting.firebasestorage.app",
-    messagingSenderId: "1016957796526",
-    appId: "1:1016957796526:web:1e41e93855578b62226d3f",
-    measurementId: "G-L4GCLM4QQT"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
-export const database = getDatabase(app, "https://medilacconsulting-default-rtdb.europe-west1.firebasedatabase.app");
+export const database = getDatabase(app, import.meta.env.VITE_FIREBASE_DATABASE_URL);
