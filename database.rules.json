@@ -1,0 +1,11 @@
+{
+    "rules": {
+        "contacts": {
+            ".read": false,
+            ".write": true,
+            "$contactId": {
+                ".validate": "newData.hasChildren(['nom', 'prenom', 'email', 'message']) && newData.child('message').val().length <= 200"
+            }
+        }
+    }
+}

@@ -8,16 +8,28 @@ import Blog from './components/sections/Blog'
 import Contact from './components/sections/Contact'
 import Footer from './components/layout/Footer'
 
+
+
 function App() {
   return (
     <Layout>
       <Hero />
-      <Protection />
-      <Distinction />
-      <CarouselSection />
-      <Approach />
-      <Blog />
-      <Contact />
+      <div id="expertise">
+        <Protection />
+        <Distinction />
+      </div>
+      <div id="themes">
+        <CarouselSection />
+      </div>
+      <div id="method">
+        <Approach />
+      </div>
+      <div id="blog">
+        <Blog />
+      </div>
+      <div id="contact">
+        <Contact />
+      </div>
       <Footer />
     </Layout>
   )

@@ -23,6 +23,11 @@ export default function Navbar() {
         { name: 'Blogue', href: '#blog' },
     ];
 
+    const scrollToContact = () => {
+        setMobileMenuOpen(false);
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
         <nav
             className={cn(
@@ -33,10 +38,7 @@ export default function Navbar() {
             <div className="container mx-auto px-6 flex items-center justify-between">
                 {/* Logo */}
                 <a href="#" className="font-bold text-xl tracking-tight text-primary flex items-center gap-2">
-                    <span className="text-2xl">✤</span>
-                    <span className={cn("transition-opacity duration-300", isScrolled ? "opacity-100" : "opacity-90")}>
-                        Médilac <span className="font-light">Consulting</span>
-                    </span>
+                    <img src="/logo_medilac.png" alt="Médilac Consulting" className="h-12 w-auto object-contain" />
                 </a>
 
                 {/* Desktop Menu */}
@@ -52,7 +54,7 @@ export default function Navbar() {
                             </a>
                         ))}
                     </div>
-                    <Button variant="primary" size="sm" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+                    <Button variant="primary" size="sm" onClick={scrollToContact}>
                         Demander un échange
                     </Button>
                 </div>
@@ -86,7 +88,9 @@ export default function Navbar() {
                                     {link.name}
                                 </a>
                             ))}
-                            <Button className="w-full mt-2" onClick={() => { setMobileMenuOpen(false); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}>Demander un échange</Button>
+                            <Button className="w-full mt-2" onClick={scrollToContact}>
+                                Demander un échange
+                            </Button>
                         </div>
                     </motion.div>
                 )}

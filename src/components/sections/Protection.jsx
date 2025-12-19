@@ -32,9 +32,12 @@ export default function Protection() {
                         <p className="text-lg text-secondary leading-relaxed mb-6">
                             RC professionnelle, prévoyance, protection du revenu, cabinet… Nous clarifions et structurons votre couverture pour vous offrir une totale tranquillité d'esprit.
                         </p>
-                        <a href="#audit" className="inline-flex items-center text-accent font-medium hover:text-accent/80 transition-colors group">
+                        <button
+                            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                            className="inline-flex items-center text-accent font-medium hover:text-accent/80 transition-colors group"
+                        >
                             Faire le point sur ma situation <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                        </a>
+                        </button>
                     </motion.div>
 
                 </div>

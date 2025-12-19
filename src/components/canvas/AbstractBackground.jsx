@@ -34,7 +34,7 @@ function FloatingShape({ position, color, scale }) {
 
 export default function AbstractBackground() {
     return (
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-white to-gray-50 h-full w-full">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-white to-gray-50 h-full w-full pointer-events-none">
             <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
                 <ambientLight intensity={0.8} />
                 <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
