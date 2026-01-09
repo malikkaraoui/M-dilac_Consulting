@@ -20,7 +20,7 @@ export default function Navbar() {
         { name: 'Expertise', href: '#expertise' },
         { name: 'Thèmes', href: '#themes' },
         { name: 'Méthode', href: '#method' },
-        { name: 'Blogue', href: '#blog' },
+        { name: 'Blog', href: '#blog' },
     ];
 
     const scrollToContact = () => {
