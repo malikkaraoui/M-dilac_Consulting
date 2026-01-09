@@ -84,6 +84,19 @@ Dans votre repo GitHub : **Settings → Secrets and variables → Actions → Ne
 	- Valeur : le JSON complet d’un **Service Account** Firebase/Google Cloud ayant accès au projet `medilacconsulting`.
 	- Pour le créer : Google Cloud Console → IAM & Admin → Service Accounts → créer un compte → lui donner un rôle adapté (ex. Firebase Hosting Admin) → générer une clé JSON.
 
+⚠️ Le build Vite a aussi besoin de la configuration Firebase (sinon écran blanc avec erreur "Missing App configuration value: projectId").
+
+Ajoute aussi ces secrets (valeurs identiques à ton `.env` local — voir `.env.example`) :
+
+- `VITE_FIREBASE_API_KEY`
+- `VITE_FIREBASE_AUTH_DOMAIN`
+- `VITE_FIREBASE_DATABASE_URL`
+- `VITE_FIREBASE_PROJECT_ID`
+- `VITE_FIREBASE_STORAGE_BUCKET`
+- `VITE_FIREBASE_MESSAGING_SENDER_ID`
+- `VITE_FIREBASE_APP_ID`
+- `VITE_FIREBASE_MEASUREMENT_ID`
+
 #### Notes
 
 - Le déploiement utilise la config `firebase.json` (hosting `public: dist`) : le dossier `dist/` est généré via `npm run build`.
