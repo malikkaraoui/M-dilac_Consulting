@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { Button } from '../ui/Button'
 import { FileText, CheckCircle, ArrowRight } from 'lucide-react'
 
-export default function LeadGenModal({ isOpen, onClose, theme }) {
+export default function LeadGenModal({ theme }) {
+
     const [step, setStep] = useState('form') // 'form' | 'success'
     const [loading, setLoading] = useState(false)
 

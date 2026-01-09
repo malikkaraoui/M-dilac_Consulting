@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button } from '../ui/Button'
 import { database } from '../../lib/firebase'
-import { ref, push, set } from 'firebase/database'
+import { ref, set } from 'firebase/database'
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -70,8 +70,20 @@ export default function Contact() {
                             </p>
                             <div className="space-y-4 text-sm text-blue-200">
                                 <p>📍 Genève • Lausanne • Fribourg</p>
-                                <p>📞 +41 22 123 45 67</p>
-                                <p>✉️ contact@medilac.ch</p>
+                                <a
+                                    href="tel:+41221234567"
+                                    className="block hover:text-white transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-white"
+                                    aria-label="Appeler le +41 22 123 45 67"
+                                >
+                                    📞 +41 22 123 45 67
+                                </a>
+                                <a
+                                    href="mailto:contact@medilac.ch"
+                                    className="block hover:text-white transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-white"
+                                    aria-label="Envoyer un email à contact@medilac.ch"
+                                >
+                                    ✉️ contact@medilac.ch
+                                </a>
                             </div>
                         </div>
 

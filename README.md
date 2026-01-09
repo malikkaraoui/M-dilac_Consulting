@@ -72,6 +72,23 @@ Ou pour déployer avec build automatique :
 npm run build && firebase deploy
 ```
 
+### Déploiement automatique (GitHub Actions)
+
+Le dépôt contient un workflow GitHub Actions qui **build** le projet et **déploie automatiquement sur Firebase Hosting** à chaque push sur la branche `main`.
+
+#### Secrets à configurer dans GitHub
+
+Dans votre repo GitHub : **Settings → Secrets and variables → Actions → New repository secret**
+
+- `FIREBASE_SERVICE_ACCOUNT_MEDILACCONSULTING`
+	- Valeur : le JSON complet d’un **Service Account** Firebase/Google Cloud ayant accès au projet `medilacconsulting`.
+	- Pour le créer : Google Cloud Console → IAM & Admin → Service Accounts → créer un compte → lui donner un rôle adapté (ex. Firebase Hosting Admin) → générer une clé JSON.
+
+#### Notes
+
+- Le déploiement utilise la config `firebase.json` (hosting `public: dist`) : le dossier `dist/` est généré via `npm run build`.
+- Le workflow est dans `.github/workflows/firebase-hosting-deploy.yml`.
+
 ## 📁 Structure du Projet
 
 ```

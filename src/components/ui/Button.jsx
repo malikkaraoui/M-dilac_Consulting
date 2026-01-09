@@ -1,6 +1,4 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva } from "class-variance-authority"
 import { cn } from "../../lib/utils"
 
 // Note: I am simulating cva/Slot behavior or I can just write a standard component.

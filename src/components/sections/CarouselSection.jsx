@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { motion, useAnimation, useMotionValue } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Shield, TrendingUp, Anchor, Briefcase, FileText, Activity } from 'lucide-react'
 import { Button } from '../ui/Button'
 import Modal from '../ui/Modal'
@@ -15,7 +15,6 @@ const CARDS = [
 ]
 
 export default function CarouselSection() {
-    const [activeIndex, setActiveIndex] = useState(0)
     const [modalOpen, setModalOpen] = useState(false)
     const [selectedTheme, setSelectedTheme] = useState(null)
     const isDraggingRef = useRef(false)
