@@ -71,18 +71,26 @@ export default function Contact() {
                             <div className="space-y-4 text-sm text-blue-200">
                                 <p>📍 Genève • Lausanne • Fribourg</p>
                                 <a
-                                    href="tel:+41221234567"
-                                    className="block hover:text-white transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-white"
-                                    aria-label="Appeler le +41 22 123 45 67"
+                                    href="https://wa.me/41221234567"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 hover:text-white transition-colors w-fit"
+                                    aria-label="Ouvrir WhatsApp pour contacter le +41 22 123 45 67"
                                 >
-                                    📞 +41 22 123 45 67
+                                    <span aria-hidden>📞</span>
+                                    <span className="underline underline-offset-4 decoration-white/30 hover:decoration-white">
+                                        +41 22 123 45 67
+                                    </span>
                                 </a>
                                 <a
                                     href="mailto:contact@medilac.ch"
-                                    className="block hover:text-white transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-white"
+                                    className="flex items-center gap-2 hover:text-white transition-colors w-fit"
                                     aria-label="Envoyer un email à contact@medilac.ch"
                                 >
-                                    ✉️ contact@medilac.ch
+                                    <span aria-hidden>✉️</span>
+                                    <span className="underline underline-offset-4 decoration-white/30 hover:decoration-white">
+                                        contact@medilac.ch
+                                    </span>
                                 </a>
                             </div>
                         </div>
