@@ -102,7 +102,7 @@ export default function CarouselSection() {
             >
                 {/* 3D Container */}
                 <motion.div
-                    className="relative w-[300px] h-[400px] preserve-3d"
+                    className="relative w-[200px] h-[280px] md:w-[300px] md:h-[400px] preserve-3d"
                     animate={{ rotateY: rotation }}
                     transition={{ type: "spring", stiffness: 40, damping: 15 }}
                     style={{ transformStyle: 'preserve-3d' }}
@@ -112,22 +112,21 @@ export default function CarouselSection() {
                         return (
                             <div
                                 key={card.id}
-                                className="absolute inset-0 bg-white rounded-3xl p-8 shadow-xl border border-gray-100 flex flex-col items-center text-center justify-between backface-visible transition-colors"
+                                className="absolute inset-0 bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-gray-100 flex flex-col items-center text-center justify-between backface-visible transition-colors"
                                 style={{
                                     transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                                 }}
-                            // Removed onClick from here
                             >
-                                <div className="w-16 h-16 bg-accent/5 rounded-2xl flex items-center justify-center text-accent mb-4">
-                                    <card.icon size={32} />
+                                <div className="w-12 h-12 md:w-16 md:h-16 bg-accent/5 rounded-2xl flex items-center justify-center text-accent mb-3 md:mb-4">
+                                    <card.icon size={24} className="md:w-8 md:h-8" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-primary mb-2">{card.title}</h3>
-                                    <p className="text-sm text-secondary">{card.desc}</p>
+                                    <h3 className="text-base md:text-xl font-bold text-primary mb-1 md:mb-2">{card.title}</h3>
+                                    <p className="text-xs md:text-sm text-secondary">{card.desc}</p>
                                 </div>
                                 <Button
                                     variant="outline"
-                                    className="w-full mt-4 group"
+                                    className="w-full mt-3 md:mt-4 group text-sm md:text-base py-2 md:py-3"
                                     onClick={(e) => {
                                         e.stopPropagation(); // Prevent partial drags triggering or conflicting
                                         handleCardClick(card);
