@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Calendar, ArrowLeft, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import Footer from '../components/layout/Footer';
+import { cn } from '../lib/utils';
 
 const blogArticles = [
     {
@@ -111,9 +113,16 @@ const faqItems = [
 
 export default function BlogPage() {
     const [openFaqIndex, setOpenFaqIndex] = useState(null);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const toggleFaq = (index) => {
@@ -122,16 +131,29 @@ export default function BlogPage() {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            {/* Header */}
-            <div className="bg-primary text-white py-20">
+            {/* Sticky Header */}
+            <nav
+                className={cn(
+                    "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+                    isScrolled 
+                        ? "bg-primary/95 backdrop-blur-md shadow-lg py-3" 
+                        : "bg-primary py-5"
+                )}
+            >
                 <div className="container mx-auto px-6">
                     <Button
                         variant="ghost"
-                        className="mb-6 text-white hover:text-white/80"
+                        className="text-white hover:text-white/80"
                         onClick={() => window.location.href = '/'}
                     >
                         <ArrowLeft className="mr-2 w-4 h-4" /> Retour à l'accueil
                     </Button>
+                </div>
+            </nav>
+
+            {/* Header */}
+            <div className="bg-primary text-white pt-32 pb-20">
+                <div className="container mx-auto px-6">
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">Analyses & Conseils</h1>
                     <p className="text-xl text-white/80 max-w-2xl">
                         L'actualité financière décryptée pour les médecins. 
@@ -246,6 +268,9 @@ export default function BlogPage() {
                     </div>
                 </div>
             </div>
+
+            {/* Footer */}
+            <Footer />
         </div>
     );
 }
