@@ -1,4 +1,5 @@
 import { ArrowRight, Calendar } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { Button } from '../ui/Button'
 
 const articles = [
@@ -28,9 +29,11 @@ export default function Blog() {
                         <h2 className="text-3xl font-bold text-primary mb-2">Analyses & Conseils</h2>
                         <p className="text-secondary">L'actualité financière décryptée pour les médecins.</p>
                     </div>
-                    <Button variant="ghost" className="hidden md:inline-flex">
-                        Voir tous les articles <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
+                    <Link to="/blog">
+                        <Button variant="ghost" className="hidden md:inline-flex">
+                            Voir tous les articles <ArrowRight className="ml-2 w-4 h-4" />
+                        </Button>
+                    </Link>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -50,7 +53,9 @@ export default function Blog() {
                 </div>
 
                 <div className="mt-8 text-center md:hidden">
-                    <Button variant="ghost">Voir tous les articles</Button>
+                    <Link to="/blog">
+                        <Button variant="ghost">Voir tous les articles</Button>
+                    </Link>
                 </div>
             </div>
         </section>
