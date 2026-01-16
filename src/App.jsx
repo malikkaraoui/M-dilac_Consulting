@@ -5,10 +5,12 @@ import Protection from './components/sections/Protection'
 import Distinction from './components/sections/Distinction'
 import CarouselSection from './components/sections/CarouselSection'
 import Approach from './components/sections/Approach'
+import Passion from './components/sections/Passion'
 import Blog from './components/sections/Blog'
 import Contact from './components/sections/Contact'
 import Footer from './components/layout/Footer'
 import BlogPage from './pages/BlogPage'
+import LegalPrivacyPage from './pages/LegalPrivacyPage'
 
 function HomePage() {
   return (
@@ -24,6 +26,7 @@ function HomePage() {
       <div id="method">
         <Approach />
       </div>
+      <Passion />
       <div id="blog">
         <Blog />
       </div>
@@ -44,6 +47,7 @@ function App() {
         </Layout>
       } />
       <Route path="/blog" element={<BlogPage />} />
+      <Route path="/politique-confidentialite" element={<LegalPrivacyPage />} />
     </Routes>
   )
 }

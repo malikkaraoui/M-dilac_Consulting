@@ -1,4 +1,5 @@
 import { Linkedin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
@@ -14,8 +15,7 @@ export default function Footer() {
                     </div>
 
                     <div className="flex gap-8 text-sm text-secondary items-center">
-                        <a href="#" className="hover:text-primary transition-colors">Mentions légales</a>
-                        <a href="#" className="hover:text-primary transition-colors">Confidentialité</a>
+                        <Link to="/politique-confidentialite" className="hover:text-primary transition-colors">Mentions légales</Link>
                         <a
                             href="https://www.linkedin.com/in/vincent-limbach-1329b660/"
                             target="_blank"

@@ -4,18 +4,23 @@ import { MessageCircle, FileBarChart, Handshake } from 'lucide-react'
 const steps = [
     {
         icon: MessageCircle,
-        title: "Écouter & Comprendre",
-        desc: "Nous prenons le temps d'analyser votre situation globale, vos objectifs de carrière et vos aspirations personnelles."
+        title: "Spécialisation médicale",
+        desc: "Nous comprenons les enjeux spécifiques des médecins et adaptons nos conseils à leur réalité professionnelle."
     },
     {
         icon: FileBarChart,
-        title: "Structurer & Prioriser",
-        desc: "Nous auditons l'existant et construisons une stratégie sur mesure, en hiérarchisant les actions à fort impact."
+        title: "Approche indépendante",
+        desc: "Nos recommandations sont basées uniquement sur vos besoins et objectifs, sans conflit d'intérêts."
     },
     {
         icon: Handshake,
-        title: "Recommander & Accompagner",
-        desc: "Nous mettons en place les solutions et restons à vos côtés pour les ajuster à chaque étape de votre vie."
+        title: "Solutions sur mesure",
+        desc: "Chaque situation est unique : nous construisons des stratégies adaptées à votre carrière, votre cabinet et votre vie personnelle."
+    },
+    {
+        icon: Handshake,
+        title: "Accompagnement durable",
+        desc: "Nous privilégions une relation de confiance sur le long terme, avec un interlocuteur unique à votre écoute."
     }
 ]
 
@@ -25,9 +30,9 @@ export default function Approach() {
             <div className="container mx-auto px-6">
 
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold text-primary mb-4">Notre Approche</h2>
+                    <h2 className="text-3xl font-bold text-primary mb-4">Notre différence</h2>
                     <p className="text-secondary max-w-2xl mx-auto italic">
-                        “Nous aidons les médecins à y voir clair dans des domaines complexes pour leur offrir tranquillité d’esprit et confiance.”
+                        Ce qui nous distingue :
                     </p>
                 </div>
 
@@ -35,7 +40,7 @@ export default function Approach() {
                     {/* Connecting Line (Desktop) */}
                     <div className="hidden md:block absolute top-12 left-10 right-10 h-0.5 bg-gray-100 -z-10" />
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                         {steps.map((step, index) => (
                             <motion.div
                                 key={index}
