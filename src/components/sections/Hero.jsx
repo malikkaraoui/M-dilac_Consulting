@@ -43,7 +43,7 @@ export default function Hero() {
                         variants={fadeInUp}
                         className="text-5xl md:text-7xl font-bold tracking-tight text-primary mb-6 leading-[1.1]"
                     >
-                        Conseil stratégique et financier pour <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">médecins</span> en Suisse.
+                        Conseil stratégique et financier dédié aux <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">médecins</span> et professionnels de la santé en Suisse romande.
                     </motion.h1>
 
                     <motion.p

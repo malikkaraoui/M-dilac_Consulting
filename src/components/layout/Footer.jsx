@@ -9,7 +9,8 @@ export default function Footer() {
                         <div className="flex items-center gap-2 font-bold text-lg text-primary">
                             <img src="/logo_medilac.png" alt="Médilac Consulting" className="h-16 w-auto object-contain" />
                         </div>
-                        <p className="text-sm text-secondary">Conseil pour médecins et professionnels de santé.</p>
+                        <p className="text-sm text-secondary">Conseil pour médecins et professionnels de la santé.</p>
+                        <p className="text-xs text-secondary/70">FINMA de Médilac Consulting : F01540914</p>
                     </div>
 
                     <div className="flex gap-8 text-sm text-secondary items-center">

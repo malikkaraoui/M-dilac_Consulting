@@ -69,27 +69,27 @@ export default function Contact() {
                                 Que vous soyez en début de carrière ou à l'approche de la retraite, un premier échange ne vous engage à rien.
                             </p>
                             <div className="space-y-4 text-sm text-blue-200">
-                                <p>📍 Genève • Lausanne • Fribourg</p>
+                                <p>📍 Suisse Romande</p>
                                 <a
-                                    href="https://wa.me/41221234567"
+                                    href="https://wa.me/41793938013"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-2 hover:text-white transition-colors w-fit"
-                                    aria-label="Ouvrir WhatsApp pour contacter le +41 22 123 45 67"
+                                    aria-label="Ouvrir WhatsApp pour contacter le +41 79 393 80 13"
                                 >
                                     <span aria-hidden>📞</span>
                                     <span className="underline underline-offset-4 decoration-white/30 hover:decoration-white">
-                                        +41 22 123 45 67
+                                        +41 79 393 80 13
                                     </span>
                                 </a>
                                 <a
-                                    href="mailto:contact@medilac.ch"
+                                    href="mailto:vincent.limbach@medilac.ch"
                                     className="flex items-center gap-2 hover:text-white transition-colors w-fit"
-                                    aria-label="Envoyer un email à contact@medilac.ch"
+                                    aria-label="Envoyer un email à vincent.limbach@medilac.ch"
                                 >
                                     <span aria-hidden>✉️</span>
                                     <span className="underline underline-offset-4 decoration-white/30 hover:decoration-white">
-                                        contact@medilac.ch
+                                        vincent.limbach@medilac.ch
                                     </span>
                                 </a>
                             </div>
