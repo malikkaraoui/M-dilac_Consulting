@@ -25,7 +25,7 @@ export default function Hero() {
             {/* 3D Background */}
             <AbstractBackground />
 
-            <div className="container mx-auto px-6 relative z-10 pt-20 [padding-top:calc(env(safe-area-inset-top)+5rem)]">
+            <div className="container mx-auto px-6 relative z-10 pt-28 md:pt-20 [padding-top:calc(env(safe-area-inset-top)+7rem)] md:[padding-top:calc(env(safe-area-inset-top)+5rem)]">
                 <motion.div
                     initial="hidden"
                     animate="visible"

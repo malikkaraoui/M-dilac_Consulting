@@ -5,6 +5,7 @@ import Protection from './components/sections/Protection'
 import Distinction from './components/sections/Distinction'
 import { CarouselSectionFirst, CarouselSectionSecond } from './components/sections/CarouselSection'
 import Approach from './components/sections/Approach'
+import Partners from './components/sections/Partners'
 import Blog from './components/sections/Blog'
 import Contact from './components/sections/Contact'
 import Footer from './components/layout/Footer'
@@ -30,6 +31,7 @@ function HomePage() {
       <div id="contact">
         <Contact />
       </div>
+      <Partners />
       <Footer />
     </>
   )

@@ -32,7 +32,7 @@ export default function Navbar() {
         <nav
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
-                isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm border-gray-100 py-2" : "bg-transparent py-8"
+                isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm border-gray-100 py-2" : "bg-transparent py-5 md:py-8"
             )}
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
@@ -43,7 +43,7 @@ export default function Navbar() {
                         alt="Médilac Consulting" 
                         className={cn(
                             "w-auto object-contain transition-all duration-300",
-                            isScrolled ? "h-16" : "h-24"
+                            isScrolled ? "h-12 md:h-16" : "h-16 md:h-24"
                         )}
                     />
                 </a>
