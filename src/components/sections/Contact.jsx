@@ -39,7 +39,12 @@ export default function Contact() {
         setStatus('loading')
 
         try {
-            const response = await fetch('/api/contact', {
+            const apiBase =
+                (import.meta.env.VITE_API_BASE_URL && import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '')) ||
+                (typeof window !== 'undefined' && window.location.hostname === 'localhost'
+                    ? 'https://contact-py5p4vwucq-ew.a.run.app'
+                    : '/api')
+            const response = await fetch(`${apiBase}/contact`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

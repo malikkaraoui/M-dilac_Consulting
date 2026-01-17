@@ -48,6 +48,10 @@ exports.contact = onRequest(
         const smtpUser = SMTP_USER.value();
         const smtpPass = SMTP_PASS.value();
 
+        if (!recipient || !smtpUser || !smtpPass) {
+          return res.status(500).json({ ok: false, error: "MISSING_SMTP_CONFIG" });
+        }
+
         const transporter = nodemailer.createTransport({
           host: "smtp.gmail.com",
           port: 465,
@@ -72,7 +76,7 @@ exports.contact = onRequest(
         return res.json({ ok: true });
       } catch (err) {
         console.error(err);
-        return res.status(500).json({ ok: false, error: "INTERNAL_ERROR" });
+        return res.status(500).json({ ok: false, error: err?.message || "INTERNAL_ERROR" });
       }
     });
   }
