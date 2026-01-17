@@ -15,6 +15,7 @@ export default function Contact() {
     const [captchaToken, setCaptchaToken] = useState(null)
     const recaptchaRef = useRef(null)
     const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY
+    const captchaReady = Boolean(siteKey)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -40,7 +41,7 @@ export default function Contact() {
             return
         }
 
-        if (!siteKey) {
+        if (!captchaReady) {
             setErrorMessage('reCAPTCHA non configuré. Contactez l’administrateur.')
             setStatus('error')
             return
@@ -205,17 +206,23 @@ export default function Contact() {
                                         autoComplete="off"
                                     />
                                 </div>
-                                <div className="flex justify-center">
-                                    <ReCAPTCHA
-                                        ref={recaptchaRef}
-                                        sitekey={siteKey}
-                                        onChange={(token) => setCaptchaToken(token)}
-                                        onExpired={() => setCaptchaToken(null)}
-                                    />
-                                </div>
+                                {captchaReady ? (
+                                    <div className="flex justify-center">
+                                        <ReCAPTCHA
+                                            ref={recaptchaRef}
+                                            sitekey={siteKey}
+                                            onChange={(token) => setCaptchaToken(token)}
+                                            onExpired={() => setCaptchaToken(null)}
+                                        />
+                                    </div>
+                                ) : (
+                                    <p className="text-sm text-yellow-200 text-center">
+                                        reCAPTCHA non configuré : ajoutez VITE_RECAPTCHA_SITE_KEY dans votre fichier .env.local
+                                    </p>
+                                )}
                                 <Button
                                     type="submit"
-                                    disabled={status === 'loading'}
+                                    disabled={status === 'loading' || !captchaReady}
                                     className="w-full bg-white text-primary hover:bg-gray-100 shadow-none border-none disabled:opacity-50"
                                 >
                                     {status === 'loading' ? 'Envoi...' : 'Envoyer le message'}
