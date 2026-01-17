@@ -8,10 +8,17 @@
         ],
         "rewrites": [
             {
+                "source": "/api/contact",
+                "function": "contact"
+            },
+            {
                 "source": "**",
                 "destination": "/index.html"
             }
         ]
+    },
+    "functions": {
+        "source": "functions"
     },
     "database": {
         "rules": "database.rules.json"

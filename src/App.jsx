@@ -20,10 +20,10 @@ function HomePage() {
         <Protection />
         <Distinction />
       </div>
+      <CarouselSectionFirst />
       <div id="method">
         <Approach />
       </div>
-      <CarouselSectionFirst />
       <div id="blog">
         <Blog />
       </div>

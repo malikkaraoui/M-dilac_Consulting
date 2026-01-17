@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import { Button } from '../ui/Button'
-import { database } from '../../lib/firebase'
-import { ref, set } from 'firebase/database'
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -11,6 +9,8 @@ export default function Contact() {
         message: ''
     })
     const [status, setStatus] = useState('idle') // idle, loading, success, error
+    const [errorMessage, setErrorMessage] = useState('')
+    const [website, setWebsite] = useState('') // honeypot
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -22,6 +22,8 @@ export default function Contact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        setErrorMessage('')
 
         // Basic validation
         if (!formData.nom || !formData.prenom || !formData.email || !formData.message) {
@@ -37,20 +39,30 @@ export default function Contact() {
         setStatus('loading')
 
         try {
-            // Sanitize email to use as key (replace . with ,)
-            const sanitizedEmail = formData.email.replace(/\./g, ',')
-            const contactRef = ref(database, 'contacts/' + sanitizedEmail)
-
-            await set(contactRef, {
-                ...formData,
-                timestamp: Date.now()
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    firstName: formData.prenom,
+                    lastName: formData.nom,
+                    email: formData.email,
+                    message: formData.message,
+                    website
+                })
             })
+
+            const result = await response.json().catch(() => ({}))
+            if (!response.ok || !result.ok) {
+                throw new Error(result.error || 'SEND_FAILED')
+            }
 
             setStatus('success')
             setFormData({ nom: '', prenom: '', email: '', message: '' })
+            setWebsite('')
             // Don't auto-reset status so the success message stays visible
         } catch (error) {
             console.error('Error adding document: ', error)
+            setErrorMessage('Échec de l’envoi. Réessayez dans un instant.')
             setStatus('error')
         }
     }
@@ -159,6 +171,17 @@ export default function Contact() {
                                     </span>
                                 </div>
 
+                                <div className="hidden">
+                                    <label htmlFor="website">Website</label>
+                                    <input
+                                        id="website"
+                                        type="text"
+                                        value={website}
+                                        onChange={(e) => setWebsite(e.target.value)}
+                                        autoComplete="off"
+                                    />
+                                </div>
+
                                 <Button
                                     type="submit"
                                     disabled={status === 'loading'}
@@ -166,7 +189,11 @@ export default function Contact() {
                                 >
                                     {status === 'loading' ? 'Envoi...' : 'Envoyer le message'}
                                 </Button>
-                                {status === 'error' && <p className="text-red-300 text-sm text-center">Une erreur technique est survenue, mais votre message a peut-être été reçu. N'hésitez pas à nous contacter directement par email.</p>}
+                                {status === 'error' && (
+                                    <p className="text-red-300 text-sm text-center">
+                                        {errorMessage || "Une erreur technique est survenue, mais votre message a peut-être été reçu. N'hésitez pas à nous contacter directement par email."}
+                                    </p>
+                                )}
                             </form>
                         )}
                     </div>

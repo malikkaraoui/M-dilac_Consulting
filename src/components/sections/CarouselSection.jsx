@@ -106,6 +106,7 @@ function CarouselRing({ cards, visibleCardCount }) {
     const isDraggingRef = useRef(false)
     const rotation = useMotionValue(0)
     const wheelTimeoutRef = useRef(null)
+    const animationRef = useRef(null)
 
     const radius = 350
     const angleStep = 360 / visibleCardCount
@@ -141,6 +142,7 @@ function CarouselRing({ cards, visibleCardCount }) {
         if (isAnimating) return
         setIsAnimating(true)
         const delta = direction === 'next' ? -angleStep : angleStep
+        if (animationRef.current) animationRef.current.stop()
         const animation = animate(rotation, rotation.get() + delta, {
             type: "spring",
             stiffness: 40,
@@ -151,6 +153,7 @@ function CarouselRing({ cards, visibleCardCount }) {
                 setIsAnimating(false)
             }
         })
+        animationRef.current = animation
         return () => animation.stop()
     }
 
@@ -163,7 +166,8 @@ function CarouselRing({ cards, visibleCardCount }) {
         }
         setIsAnimating(true)
         const target = steps * angleStep
-        animate(rotation, target, {
+        if (animationRef.current) animationRef.current.stop()
+        const animation = animate(rotation, target, {
             type: "spring",
             stiffness: 60,
             damping: 18,
@@ -173,6 +177,7 @@ function CarouselRing({ cards, visibleCardCount }) {
                 setIsAnimating(false)
             }
         })
+        animationRef.current = animation
     }
 
     const nextCard = () => rotateOnce('next')
@@ -184,17 +189,20 @@ function CarouselRing({ cards, visibleCardCount }) {
             onPanStart={() => {
                 setIsPaused(true)
                 isDraggingRef.current = true
+                if (animationRef.current) animationRef.current.stop()
+                setIsAnimating(false)
             }}
             onPan={(_, info) => {
-                if (isAnimating) return
                 rotation.set(rotation.get() + info.delta.x * 0.4)
             }}
             onPanEnd={(_, info) => {
                 setIsPaused(false)
+                if (animationRef.current) animationRef.current.stop()
                 if (Math.abs(info.offset.x) > dragThreshold) {
                     snapToNearest()
                 } else {
-                    animate(rotation, 0, { type: "spring", stiffness: 80, damping: 20 })
+                    const animation = animate(rotation, 0, { type: "spring", stiffness: 80, damping: 20 })
+                    animationRef.current = animation
                 }
                 setTimeout(() => {
                     isDraggingRef.current = false
@@ -204,9 +212,9 @@ function CarouselRing({ cards, visibleCardCount }) {
                 if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
                     e.preventDefault()
                     setIsPaused(true)
-                    if (!isAnimating) {
-                        rotation.set(rotation.get() - e.deltaX * 0.6)
-                    }
+                    if (animationRef.current) animationRef.current.stop()
+                    setIsAnimating(false)
+                    rotation.set(rotation.get() - e.deltaX * 0.6)
                     if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
                     wheelTimeoutRef.current = setTimeout(() => {
                         snapToNearest()
