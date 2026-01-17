@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import ReCAPTCHA from 'react-google-recaptcha'
 import { Button } from '../ui/Button'
 
 export default function Contact() {
@@ -11,6 +12,9 @@ export default function Contact() {
     const [status, setStatus] = useState('idle') // idle, loading, success, error
     const [errorMessage, setErrorMessage] = useState('')
     const [website, setWebsite] = useState('') // honeypot
+    const [captchaToken, setCaptchaToken] = useState(null)
+    const recaptchaRef = useRef(null)
+    const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -36,6 +40,18 @@ export default function Contact() {
             return
         }
 
+        if (!siteKey) {
+            setErrorMessage('reCAPTCHA non configuré. Contactez l’administrateur.')
+            setStatus('error')
+            return
+        }
+
+        if (!captchaToken) {
+            setErrorMessage('Veuillez compléter le reCAPTCHA avant d’envoyer le message.')
+            setStatus('idle')
+            return
+        }
+
         setStatus('loading')
 
         try {
@@ -52,7 +68,8 @@ export default function Contact() {
                     lastName: formData.nom,
                     email: formData.email,
                     message: formData.message,
-                    website
+                    website,
+                    recaptchaToken: captchaToken
                 })
             })
 
@@ -64,6 +81,8 @@ export default function Contact() {
             setStatus('success')
             setFormData({ nom: '', prenom: '', email: '', message: '' })
             setWebsite('')
+            setCaptchaToken(null)
+            recaptchaRef.current?.reset()
             // Don't auto-reset status so the success message stays visible
         } catch (error) {
             console.error('Error adding document: ', error)
@@ -186,7 +205,14 @@ export default function Contact() {
                                         autoComplete="off"
                                     />
                                 </div>
-
+                                <div className="flex justify-center">
+                                    <ReCAPTCHA
+                                        ref={recaptchaRef}
+                                        sitekey={siteKey}
+                                        onChange={(token) => setCaptchaToken(token)}
+                                        onExpired={() => setCaptchaToken(null)}
+                                    />
+                                </div>
                                 <Button
                                     type="submit"
                                     disabled={status === 'loading'}

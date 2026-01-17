@@ -16,24 +16,30 @@
 - `VITE_API_BASE_URL` :
   - Prod (Firebase Hosting) : `/api` (utilise la réécriture Hosting)
   - Dev local : URL directe de la fonction (ex. `https://contact-py5p4vwucq-ew.a.run.app`) pour éviter le 404.
+- `VITE_RECAPTCHA_SITE_KEY` : clé de site reCAPTCHA (v2/v3) affichée dans le widget.
 - Placer dans `.env.local` (non commité) et redémarrer `npm run dev` après changement.
 
 ## Secrets à renseigner côté Functions (via CLI)
 - `SMTP_USER` : adresse Gmail d’envoi.
 - `SMTP_PASS` : **mot de passe d’application** (16 caractères) généré après avoir activé la 2FA sur le compte Gmail. Le mot de passe Gmail normal ne fonctionne pas.
 - `RECIPIENT_EMAIL` : adresse de réception (peut être la même que l’adresse d’envoi).
+- `RECAPTCHA_SECRET` : clé secrète reCAPTCHA (correspondant à la clé de site).
 
 Commande type :
 ```bash
 printf '%s' 'valeur' | firebase functions:secrets:set SMTP_USER
 printf '%s' 'motdepasseapplication' | firebase functions:secrets:set SMTP_PASS
 printf '%s' 'destinataire@domaine.com' | firebase functions:secrets:set RECIPIENT_EMAIL
+printf '%s' 'votre_cle_secrete_recaptcha' | firebase functions:secrets:set RECAPTCHA_SECRET
 ```
 
 ## Dépendances côté Functions
 - `firebase-functions@5.1.0` (Node 20)
 - `nodemailer`
 - `cors`
+
+## Dépendances côté Front
+- `react-google-recaptcha`
 
 ## Réécriture Hosting (firebase.json)
 ```json
@@ -67,7 +73,7 @@ firebase deploy --only hosting
 ```bash
 curl -X POST https://<site>/api/contact \
   -H "Content-Type: application/json" \
-  -d '{"firstName":"Test","lastName":"User","email":"test@example.com","message":"Hello","website":""}'
+  -d '{"firstName":"Test","lastName":"User","email":"test@example.com","message":"Hello","website":"","recaptchaToken":"TOKEN_RECAPTCHA"}'
 ```
 - Réponse attendue : `{ "ok": true, "message": "Email sent" }`.
 
@@ -75,10 +81,12 @@ curl -X POST https://<site>/api/contact \
 - **404 `/api/contact` en dev** : Vite n’a pas la réécriture ; utiliser `VITE_API_BASE_URL` pointant vers l’URL Cloud Run ou fallback automatique côté front.
 - **404 en prod** : rebuild + `firebase deploy --only hosting` pour rafraîchir la réécriture.
 - **SMTP invalid login / 534 5.7.9** : utiliser un mot de passe d’application Gmail (2FA activée), pas le mot de passe standard.
+- **RECAPTCHA_FAILED / MISSING_RECAPTCHA_TOKEN** : vérifier la clé site en front (`VITE_RECAPTCHA_SITE_KEY`), la clé secrète en secret (`RECAPTCHA_SECRET`) et l’envoi du token dans le payload.
 - **METHOD_NOT_ALLOWED en GET** : normal si on ouvre l’URL de la fonction dans le navigateur ; seul le POST est accepté.
 
 ## Checklist opérationnelle
 - [ ] Secrets `SMTP_USER`, `SMTP_PASS` (mot de passe d’application), `RECIPIENT_EMAIL` saisis.
+- [ ] Secret `RECAPTCHA_SECRET` saisi et clé site `VITE_RECAPTCHA_SITE_KEY` configurée.
 - [ ] Front configuré (`VITE_API_BASE_URL`) et rebuildé.
 - [ ] Fonctions déployées.
 - [ ] Hosting déployé.
@@ -90,3 +98,4 @@ curl -X POST https://<site>/api/contact \
 - En dev, pointer directement vers l’URL Cloud Run pour éviter les 404 liés aux réécritures Hosting.
 - Limiter la taille du message (ici 200 chars) et garder un honeypot pour les bots.
 - Sur erreur SMTP, loguer le message retourné et vérifier en priorité : mot de passe d’application, 2FA activée, adresse expéditrice identique à `SMTP_USER`.
+- Sur reCAPTCHA, vérifier la correspondance clé site / clé secrète et la présence du token dans le body.

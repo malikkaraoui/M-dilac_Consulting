@@ -6,6 +6,7 @@ const cors = require("cors")({ origin: true });
 const RECIPIENT_EMAIL = defineSecret("RECIPIENT_EMAIL");
 const SMTP_USER = defineSecret("SMTP_USER");
 const SMTP_PASS = defineSecret("SMTP_PASS");
+const RECAPTCHA_SECRET = defineSecret("RECAPTCHA_SECRET");
 
 function safeStr(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -14,7 +15,7 @@ function safeStr(value) {
 exports.contact = onRequest(
   {
     region: "europe-west1",
-    secrets: [RECIPIENT_EMAIL, SMTP_USER, SMTP_PASS]
+    secrets: [RECIPIENT_EMAIL, SMTP_USER, SMTP_PASS, RECAPTCHA_SECRET]
   },
   async (req, res) => {
     cors(req, res, async () => {
@@ -23,7 +24,7 @@ exports.contact = onRequest(
           return res.status(405).json({ ok: false, error: "METHOD_NOT_ALLOWED" });
         }
 
-        const { firstName, lastName, email, message, website } = req.body || {};
+        const { firstName, lastName, email, message, website, recaptchaToken } = req.body || {};
         if (safeStr(website)) {
           return res.status(200).json({ ok: true });
         }
@@ -32,6 +33,7 @@ exports.contact = onRequest(
         const ln = safeStr(lastName);
         const em = safeStr(email);
         const msg = safeStr(message);
+        const captcha = safeStr(recaptchaToken);
 
         if (!fn || !ln || !em || !msg) {
           return res.status(400).json({ ok: false, error: "MISSING_FIELDS" });
@@ -43,13 +45,30 @@ exports.contact = onRequest(
         if (!emailOk) {
           return res.status(400).json({ ok: false, error: "INVALID_EMAIL" });
         }
+        if (!captcha) {
+          return res.status(400).json({ ok: false, error: "MISSING_RECAPTCHA_TOKEN" });
+        }
 
         const recipient = RECIPIENT_EMAIL.value();
         const smtpUser = SMTP_USER.value();
         const smtpPass = SMTP_PASS.value();
+        const recaptchaSecret = RECAPTCHA_SECRET.value();
 
         if (!recipient || !smtpUser || !smtpPass) {
           return res.status(500).json({ ok: false, error: "MISSING_SMTP_CONFIG" });
+        }
+        if (!recaptchaSecret) {
+          return res.status(500).json({ ok: false, error: "MISSING_RECAPTCHA_SECRET" });
+        }
+
+        const captchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ secret: recaptchaSecret, response: captcha }).toString()
+        });
+        const captchaJson = await captchaRes.json().catch(() => ({ success: false }));
+        if (!captchaJson.success) {
+          return res.status(400).json({ ok: false, error: "RECAPTCHA_FAILED" });
         }
 
         const transporter = nodemailer.createTransport({
