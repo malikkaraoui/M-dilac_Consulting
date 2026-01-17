@@ -37,7 +37,7 @@ const CARDS = [
         title: "Hypothèques pour médecins",
         icon: Landmark,
         desc: "Solutions de financement immobilier adaptées.",
-        pdf: "/PDF/Hypothèques-pour-Medecins.pdf"
+        pdf: "/PDF/Hypotheques-pour-Medecins.pdf"
     },
     {
         id: 6,
@@ -97,17 +97,17 @@ const CARDS = [
     }
 ]
 
-export default function CarouselSection() {
-    const [baseIndex, setBaseIndex] = useState(0)
+const FIRST_CARDS = CARDS.slice(0, 6)
+const SECOND_CARDS = CARDS.slice(6)
+
+function CarouselRing({ cards, visibleCardCount }) {
     const [isAnimating, setIsAnimating] = useState(false)
     const [isPaused, setIsPaused] = useState(false)
     const isDraggingRef = useRef(false)
     const rotation = useMotionValue(0)
     const wheelTimeoutRef = useRef(null)
 
-    // Config
-    const visibleCardCount = 6
-    const radius = 350 // Radius of the carousel
+    const radius = 350
     const angleStep = 360 / visibleCardCount
     const dragThreshold = 80
 
@@ -118,17 +118,12 @@ export default function CarouselSection() {
         return 0.3 + depth * 0.7
     }
 
-    const slot0Opacity = useTransform(rotation, (v) => computeOpacity(0, v))
-    const slot1Opacity = useTransform(rotation, (v) => computeOpacity(1, v))
-    const slot2Opacity = useTransform(rotation, (v) => computeOpacity(2, v))
-    const slot3Opacity = useTransform(rotation, (v) => computeOpacity(3, v))
-    const slot4Opacity = useTransform(rotation, (v) => computeOpacity(4, v))
-    const slot5Opacity = useTransform(rotation, (v) => computeOpacity(5, v))
-    const slotOpacities = [slot0Opacity, slot1Opacity, slot2Opacity, slot3Opacity, slot4Opacity, slot5Opacity]
+    const slotOpacities = Array.from({ length: visibleCardCount }).map((_, index) =>
+        useTransform(rotation, (v) => computeOpacity(index, v))
+    )
 
-    // Auto-rotation
     useEffect(() => {
-        let interval;
+        let interval
         if (!isPaused && !isAnimating) {
             interval = setInterval(() => {
                 rotateOnce('next')
@@ -151,11 +146,8 @@ export default function CarouselSection() {
             stiffness: 40,
             damping: 15,
             onComplete: () => {
-                setBaseIndex((prev) => {
-                    const shift = direction === 'next' ? 1 : -1
-                    return (prev + shift + CARDS.length) % CARDS.length
-                })
-                rotation.set(0)
+                const normalized = ((rotation.get() % 360) + 360) % 360
+                rotation.set(normalized)
                 setIsAnimating(false)
             }
         })
@@ -176,11 +168,8 @@ export default function CarouselSection() {
             stiffness: 60,
             damping: 18,
             onComplete: () => {
-                setBaseIndex((prev) => {
-                    const shift = -steps
-                    return (prev + shift + CARDS.length) % CARDS.length
-                })
-                rotation.set(0)
+                const normalized = ((target % 360) + 360) % 360
+                rotation.set(normalized)
                 setIsAnimating(false)
             }
         })
@@ -190,109 +179,119 @@ export default function CarouselSection() {
     const prevCard = () => rotateOnce('prev')
 
     return (
+        <motion.div
+            className="relative h-[600px] w-full flex items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing touch-pan-y"
+            onPanStart={() => {
+                setIsPaused(true)
+                isDraggingRef.current = true
+            }}
+            onPan={(_, info) => {
+                if (isAnimating) return
+                rotation.set(rotation.get() + info.delta.x * 0.4)
+            }}
+            onPanEnd={(_, info) => {
+                setIsPaused(false)
+                if (Math.abs(info.offset.x) > dragThreshold) {
+                    snapToNearest()
+                } else {
+                    animate(rotation, 0, { type: "spring", stiffness: 80, damping: 20 })
+                }
+                setTimeout(() => {
+                    isDraggingRef.current = false
+                }, 50)
+            }}
+            onWheel={(e) => {
+                if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                    e.preventDefault()
+                    setIsPaused(true)
+                    if (!isAnimating) {
+                        rotation.set(rotation.get() - e.deltaX * 0.6)
+                    }
+                    if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
+                    wheelTimeoutRef.current = setTimeout(() => {
+                        snapToNearest()
+                        setIsPaused(false)
+                    }, 200)
+                }
+            }}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+        >
+            <motion.div
+                className="relative w-[200px] h-[280px] md:w-[300px] md:h-[400px] preserve-3d"
+                style={{ rotateY: rotation, transformStyle: 'preserve-3d' }}
+            >
+                {Array.from({ length: visibleCardCount }).map((_, index) => {
+                    const card = cards[index % cards.length]
+                    const angle = index * angleStep
+                    return (
+                        <motion.div
+                            key={`${card.id}-${index}`}
+                            className="absolute inset-0 bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-gray-100 flex flex-col items-center text-center justify-between backface-visible transition-colors select-none"
+                            style={{
+                                transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                                opacity: slotOpacities[index]
+                            }}
+                        >
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-accent/5 rounded-2xl flex items-center justify-center text-accent mb-3 md:mb-4">
+                                <card.icon size={24} className="md:w-8 md:h-8" />
+                            </div>
+                            <div>
+                                <h3 className="text-base md:text-xl font-bold text-primary mb-1 md:mb-2">{card.title}</h3>
+                                <p className="text-xs md:text-sm text-secondary">{card.desc}</p>
+                            </div>
+                            <Button
+                                variant="outline"
+                                className="w-full mt-3 md:mt-4 group text-sm md:text-base py-2 md:py-3"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleCardClick(card);
+                                }}
+                            >
+                                Télécharger le PDF
+                            </Button>
+                        </motion.div>
+                    )
+                })}
+            </motion.div>
+
+            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 md:px-12 pointer-events-none z-20">
+                <Button
+                    onClick={prevCard}
+                    variant="secondary"
+                    className="pointer-events-auto rounded-full w-12 h-12 p-0 shadow-lg bg-white/80 backdrop-blur hover:bg-white text-primary border border-gray-100 flex items-center justify-center text-lg"
+                >
+                    ←
+                </Button>
+                <Button
+                    onClick={nextCard}
+                    variant="secondary"
+                    className="pointer-events-auto rounded-full w-12 h-12 p-0 shadow-lg bg-white/80 backdrop-blur hover:bg-white text-primary border border-gray-100 flex items-center justify-center text-lg"
+                >
+                    →
+                </Button>
+            </div>
+        </motion.div>
+    )
+}
+
+export function CarouselSectionFirst() {
+    return (
         <section className="py-32 bg-white overflow-hidden" id="themes">
             <div className="container mx-auto px-6 text-center mb-20">
                 <h2 className="text-3xl md:text-5xl font-bold text-primary mb-6">Explorez vos thématiques</h2>
                 <p className="text-secondary max-w-xl mx-auto text-lg">Accédez directement à nos guides PDF, sans inscription.</p>
             </div>
 
-            <motion.div
-                className="relative h-[600px] w-full flex items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing touch-pan-y"
-                onPanStart={() => {
-                    setIsPaused(true)
-                    isDraggingRef.current = true
-                }}
-                onPan={(_, info) => {
-                    if (isAnimating) return
-                    rotation.set(rotation.get() + info.delta.x * 0.4)
-                }}
-                onPanEnd={(_, info) => {
-                    setIsPaused(false)
-                    if (Math.abs(info.offset.x) > dragThreshold) {
-                        snapToNearest()
-                    } else {
-                        animate(rotation, 0, { type: "spring", stiffness: 80, damping: 20 })
-                    }
-                    setTimeout(() => {
-                        isDraggingRef.current = false
-                    }, 50)
-                }}
-                onWheel={(e) => {
-                    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-                        e.preventDefault()
-                        setIsPaused(true)
-                        if (!isAnimating) {
-                            rotation.set(rotation.get() - e.deltaX * 0.6)
-                        }
-                        if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
-                        wheelTimeoutRef.current = setTimeout(() => {
-                            snapToNearest()
-                            setIsPaused(false)
-                        }, 200)
-                    }
-                }}
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
-            >
-                {/* 3D Container */}
-                <motion.div
-                    className="relative w-[200px] h-[280px] md:w-[300px] md:h-[400px] preserve-3d"
-                    style={{ rotateY: rotation, transformStyle: 'preserve-3d' }}
-                >
-                    {Array.from({ length: visibleCardCount }).map((_, index) => {
-                        const card = CARDS[(baseIndex + index) % CARDS.length]
-                        const angle = index * angleStep
-                        return (
-                            <motion.div
-                                key={`${card.id}-${index}`}
-                                className="absolute inset-0 bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-gray-100 flex flex-col items-center text-center justify-between backface-visible transition-colors"
-                                style={{
-                                    transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
-                                    opacity: slotOpacities[index]
-                                }}
-                            >
-                                <div className="w-12 h-12 md:w-16 md:h-16 bg-accent/5 rounded-2xl flex items-center justify-center text-accent mb-3 md:mb-4">
-                                    <card.icon size={24} className="md:w-8 md:h-8" />
-                                </div>
-                                <div>
-                                    <h3 className="text-base md:text-xl font-bold text-primary mb-1 md:mb-2">{card.title}</h3>
-                                    <p className="text-xs md:text-sm text-secondary">{card.desc}</p>
-                                </div>
-                                <Button
-                                    variant="outline"
-                                    className="w-full mt-3 md:mt-4 group text-sm md:text-base py-2 md:py-3"
-                                    onClick={(e) => {
-                                        e.stopPropagation(); // Prevent partial drags triggering or conflicting
-                                        handleCardClick(card);
-                                    }}
-                                >
-                                    Télécharger le PDF
-                                </Button>
-                            </motion.div>
-                        )
-                    })}
-                </motion.div>
+            <CarouselRing cards={FIRST_CARDS} visibleCardCount={6} />
+        </section>
+    )
+}
 
-                {/* Controls (Optional, for accessibility/ease) */}
-                {/* Controls */}
-                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 md:px-12 pointer-events-none z-20">
-                    <Button
-                        onClick={prevCard}
-                        variant="secondary"
-                        className="pointer-events-auto rounded-full w-12 h-12 p-0 shadow-lg bg-white/80 backdrop-blur hover:bg-white text-primary border border-gray-100 flex items-center justify-center text-lg"
-                    >
-                        ←
-                    </Button>
-                    <Button
-                        onClick={nextCard}
-                        variant="secondary"
-                        className="pointer-events-auto rounded-full w-12 h-12 p-0 shadow-lg bg-white/80 backdrop-blur hover:bg-white text-primary border border-gray-100 flex items-center justify-center text-lg"
-                    >
-                        →
-                    </Button>
-                </div>
-            </motion.div>
-
+export function CarouselSectionSecond() {
+    return (
+        <section className="py-24 bg-white overflow-hidden">
+            <CarouselRing cards={SECOND_CARDS} visibleCardCount={7} />
         </section>
     )
 }

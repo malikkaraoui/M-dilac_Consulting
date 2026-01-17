@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { MessageCircle, FileBarChart, Handshake } from 'lucide-react'
+import { MessageCircle, FileBarChart, Ruler, Users } from 'lucide-react'
 
 const steps = [
     {
@@ -13,12 +13,12 @@ const steps = [
         desc: "Nos recommandations sont basées uniquement sur vos besoins et objectifs, sans conflit d'intérêts."
     },
     {
-        icon: Handshake,
+        icon: Ruler,
         title: "Solutions sur mesure",
         desc: "Chaque situation est unique : nous construisons des stratégies adaptées à votre carrière, votre cabinet et votre vie personnelle."
     },
     {
-        icon: Handshake,
+        icon: Users,
         title: "Accompagnement durable",
         desc: "Nous privilégions une relation de confiance sur le long terme, avec un interlocuteur unique à votre écoute."
     }

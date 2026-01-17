@@ -25,7 +25,7 @@ export default function Hero() {
             {/* 3D Background */}
             <AbstractBackground />
 
-            <div className="container mx-auto px-6 relative z-10 pt-20">
+            <div className="container mx-auto px-6 relative z-10 pt-20 [padding-top:calc(env(safe-area-inset-top)+5rem)]">
                 <motion.div
                     initial="hidden"
                     animate="visible"
@@ -43,7 +43,7 @@ export default function Hero() {
                         variants={fadeInUp}
                         className="text-5xl md:text-7xl font-bold tracking-tight text-primary mb-6 leading-[1.1]"
                     >
-                        Conseil stratégique et financier dédié aux <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">médecins</span> et professionnels de la santé en Suisse romande.
+                        Conseil stratégique et financier dédié aux <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">médecins</span> et professionnels de la santé.
                     </motion.h1>
 
                     <motion.p
