@@ -14,7 +14,7 @@ export default function Contact() {
     const [website, setWebsite] = useState('') // honeypot
     const [captchaToken, setCaptchaToken] = useState(null)
     const recaptchaRef = useRef(null)
-    const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY
+    const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6Lcc0k0sAAAAAK0fw9IX5VkkHCWr2DlgteIDSzBZ'
     const captchaReady = Boolean(siteKey)
 
     const handleChange = (e) => {
