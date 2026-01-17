@@ -8,8 +8,11 @@
         ],
         "rewrites": [
             {
-                "source": "/api/contact",
-                "function": "contact"
+                "source": "api/contact",
+                "function": {
+                    "functionId": "contact",
+                    "region": "europe-west1"
+                }
             },
             {
                 "source": "**",

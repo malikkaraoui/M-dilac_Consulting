@@ -44,7 +44,7 @@ printf '%s' 'votre_cle_secrete_recaptcha' | firebase functions:secrets:set RECAP
 ## Réécriture Hosting (firebase.json)
 ```json
 "rewrites": [
-  { "source": "/api/contact", "function": "contact" },
+  { "source": "api/contact", "function": { "functionId": "contact", "region": "europe-west1" } },
   { "source": "**", "destination": "/index.html" }
 ]
 ```
