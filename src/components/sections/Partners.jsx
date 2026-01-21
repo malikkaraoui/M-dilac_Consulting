@@ -3,17 +3,7 @@ export default function Partners() {
         {
             name: 'TariForm',
             href: 'https://tariform.ch',
-            logo: '/TariForm.png'
-        },
-        {
-            name: 'Medicalis',
-            href: 'https://www.medicalis.ch',
-            logo: '/Medicalis.png'
-        },
-        {
-            name: 'Tectram',
-            href: 'https://www.tectram.ch',
-            logo: '/Tectram.png'
+            logo: '/logo_tariform.png'
         },
         {
             name: 'Medilec S.A.',
@@ -28,20 +18,20 @@ export default function Partners() {
                 <div className="text-center mb-10">
                     <h2 className="text-2xl md:text-3xl font-bold text-primary">Nos partenaires</h2>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+                <div className="flex flex-wrap justify-center gap-8">
                     {partners.map((partner) => (
                         <a
                             key={partner.name}
                             href={partner.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center justify-center p-4 rounded-2xl border border-gray-100 hover:shadow-soft transition-all bg-white hover:scale-105"
+                            className="flex items-center justify-center p-4 rounded-2xl border border-gray-100 hover:shadow-soft transition-all bg-white hover:scale-105 text-center w-40 md:w-48"
                             aria-label={partner.name}
                         >
                             <img
                                 src={partner.logo}
                                 alt={partner.name}
-                                className="h-12 md:h-16 w-auto object-contain"
+                                className="h-12 md:h-16 w-auto object-contain mx-auto"
                                 loading="lazy"
                             />
                         </a>
