@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 export default function Partners() {
     const partners = [
         {
@@ -15,17 +17,29 @@ export default function Partners() {
     return (
         <section className="py-16 bg-white">
             <div className="container mx-auto px-6">
-                <div className="text-center mb-10">
+                <motion.div 
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="text-center mb-10"
+                >
                     <h2 className="text-2xl md:text-3xl font-bold text-primary">Nos partenaires</h2>
-                </div>
+                </motion.div>
                 <div className="flex flex-wrap justify-center gap-8">
-                    {partners.map((partner) => (
-                        <a
+                    {partners.map((partner, index) => (
+                        <motion.a
                             key={partner.name}
                             href={partner.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center justify-center p-4 rounded-2xl border border-gray-100 hover:shadow-soft transition-all bg-white hover:scale-105 text-center w-40 md:w-48"
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.3, delay: index * 0.1, ease: "easeOut" }}
+                            whileHover={{ scale: 1.05, y: -3 }}
+                            style={{ willChange: 'transform' }}
+                            className="flex items-center justify-center p-4 rounded-2xl border border-gray-100 hover:shadow-soft transition-shadow duration-200 bg-white text-center w-40 md:w-48"
                             aria-label={partner.name}
                         >
                             <img
@@ -34,7 +48,7 @@ export default function Partners() {
                                 className="h-12 md:h-16 w-auto object-contain mx-auto"
                                 loading="lazy"
                             />
-                        </a>
+                        </motion.a>
                     ))}
                 </div>
             </div>

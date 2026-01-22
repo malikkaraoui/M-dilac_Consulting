@@ -17,7 +17,6 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
-        { name: 'Expertise', href: '#expertise' },
         { name: 'Thèmes', href: '#themes' },
         { name: 'Méthode', href: '#method' },
         { name: 'Blog', href: '#blog' },

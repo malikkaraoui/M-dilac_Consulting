@@ -8,6 +8,7 @@ import Approach from './components/sections/Approach'
 import Partners from './components/sections/Partners'
 import Blog from './components/sections/Blog'
 import Contact from './components/sections/Contact'
+import Testimonials from './components/sections/Testimonials'
 import Footer from './components/layout/Footer'
 import BlogPage from './pages/BlogPage'
 import LegalPrivacyPage from './pages/LegalPrivacyPage'
@@ -31,6 +32,7 @@ function HomePage() {
       <div id="contact">
         <Contact />
       </div>
+      <Testimonials />
       <Partners />
       <Footer />
     </>

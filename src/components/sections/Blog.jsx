@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { ArrowRight, Calendar } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Button } from '../ui/Button'
@@ -24,7 +25,13 @@ export default function Blog() {
     return (
         <section className="py-24 bg-gray-50" id="blog">
             <div className="container mx-auto px-6">
-                <div className="flex justify-between items-end mb-12">
+                <motion.div 
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="flex justify-between items-end mb-12"
+                >
                     <div>
                         <h2 className="text-3xl font-bold text-primary mb-2">Analyses & Conseils</h2>
                         <p className="text-secondary">L'actualité financière décryptée pour les médecins.</p>
@@ -34,11 +41,20 @@ export default function Blog() {
                             Voir tous les articles <ArrowRight className="ml-2 w-4 h-4" />
                         </Button>
                     </Link>
-                </div>
+                </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {articles.map((article, index) => (
-                        <div key={index} className="bg-white p-6 rounded-2xl border border-gray-100 hover:shadow-soft transition-all group cursor-pointer">
+                        <motion.div 
+                            key={index} 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.3, delay: index * 0.08, ease: "easeOut" }}
+                            whileHover={{ y: -4 }}
+                            style={{ willChange: 'transform' }}
+                            className="bg-white p-6 rounded-2xl border border-gray-100 hover:shadow-soft transition-shadow duration-200 group cursor-pointer"
+                        >
                             <span className="inline-block px-3 py-1 bg-gray-100 text-xs font-semibold text-secondary rounded-full mb-4">
                                 {article.tag}
                             </span>
@@ -48,7 +64,7 @@ export default function Blog() {
                             <div className="flex items-center text-xs text-secondary/60 mt-auto pt-4">
                                 <Calendar size={14} className="mr-2" /> {article.date}
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 

@@ -95,7 +95,7 @@ const faqItems = [
     },
     {
         question: "Quelle est la différence entre le 2ème et le 3ème pilier ?",
-        answer: "Le 2ème pilier (LPP) est obligatoire pour les salariés et facultatif pour les indépendants. Le 3ème pilier est une prévoyance privée facultative qui offre des avantages fiscaux importants. Pour les médecins indépendants, le 3ème pilier lié (3a) permet de déduire jusqu'à CHF 7'056 par an (montant 2025)."
+        answer: "Le 2ème pilier (LPP) est obligatoire pour les salariés et facultatif pour les indépendants. Le 3ème pilier est une prévoyance privée facultative qui offre des avantages fiscaux importants. Pour les médecins indépendants, le 3ème pilier lié (3a) permet de déduire jusqu'à CHF 36'288 par an (montant 2025)."
     },
     {
         question: "Comment évaluer le prix d'un cabinet à reprendre ?",
@@ -182,58 +182,6 @@ export default function BlogPage() {
                             </div>
                         </div>
                     ))}
-                </div>
-
-                {/* Ressources utiles */}
-                <div className="bg-white p-8 rounded-2xl border border-gray-100 mb-16">
-                    <h2 className="text-2xl font-bold text-primary mb-6">Ressources utiles</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h3 className="font-semibold text-primary mb-3">Institutions officielles</h3>
-                            <ul className="space-y-2">
-                                <li>
-                                    <a href="https://www.fmh.ch" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-                                        FMH - Fédération des médecins suisses
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.admin.ch/gov/fr/accueil.html" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-                                        Administration fédérale suisse
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.ahv-iv.ch" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-                                        AVS/AI - Assurances sociales
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.estv.admin.ch" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-                                        AFC - Administration fédérale des contributions
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="font-semibold text-primary mb-3">Prévoyance & Assurances</h3>
-                            <ul className="space-y-2">
-                                <li>
-                                    <a href="https://www.ch.ch/fr/travail/independance-professionnelle/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-                                        Guide de la prévoyance professionnelle
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.bsv.admin.ch" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-                                        Office fédéral des assurances sociales
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.ahv-iv.ch/fr/Contacts/Caisses-cantonales-de-compensation" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-                                        Caisse de compensation Roko
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
 
                 {/* FAQ */}

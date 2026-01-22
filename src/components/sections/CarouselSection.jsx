@@ -3,102 +3,104 @@ import { motion, animate, useMotionValue, useTransform } from 'framer-motion'
 import { Shield, TrendingUp, Anchor, Briefcase, FileText, Activity, Scale, Gavel, Building, Stethoscope, Landmark, ShieldCheck } from 'lucide-react'
 import { Button } from '../ui/Button'
 
-const CARDS = [
+// Premier carrousel (assurance 1)
+const FIRST_CARDS = [
     {
         id: 1,
-        title: "Analyse des cyberattaques en Suisse",
-        icon: Shield,
-        desc: "Cybersécurité et risques numériques.",
-        pdf: "/PDF/Analyse-Cyberattaques-en-Suisse.pdf"
-    },
-    {
-        id: 2,
         title: "Assurance perte de gain",
         icon: Anchor,
         desc: "Protéger vos revenus en cas d'incapacité.",
-        pdf: "/PDF/Assurance-Perte-de-Gain.pdf"
+        pdf: "/PDF/assurance 1/Assurance-Perte-de-Gain.pdf"
     },
     {
-        id: 3,
+        id: 2,
         title: "Boostez votre retraite",
         icon: TrendingUp,
         desc: "Stratégies pour renforcer votre prévoyance.",
-        pdf: "/PDF/Boostez-votre-retraite.pdf"
+        pdf: "/PDF/assurance 1/Boostez-votre-retraite.pdf"
     },
     {
-        id: 4,
-        title: "Comment lancer votre cabinet médical",
-        icon: Briefcase,
-        desc: "Les étapes clés pour démarrer sereinement.",
-        pdf: "/PDF/Comment-lancer-votre-cabinet-medical.pdf"
-    },
-    {
-        id: 5,
-        title: "Hypothèques pour médecins",
-        icon: Landmark,
-        desc: "Solutions de financement immobilier adaptées.",
-        pdf: "/PDF/Hypotheques-pour-Medecins.pdf"
-    },
-    {
-        id: 6,
+        id: 3,
         title: "Responsabilité civile professionnelle",
         icon: ShieldCheck,
         desc: "Couverture essentielle des médecins indépendants.",
-        pdf: "/PDF/La-Responsabilite-Civile-Professionnelle-pour-Medecins-Independants.pdf"
+        pdf: "/PDF/assurance 1/La-Responsabilite-Civile-Professionnelle-pour-Medecins-Independants.pdf"
     },
     {
-        id: 7,
-        title: "La balance du TARDOC",
-        icon: Scale,
-        desc: "Comprendre les enjeux tarifaires.",
-        pdf: "/PDF/La-balance-du-Tardoc.pdf"
-    },
-    {
-        id: 8,
+        id: 4,
         title: "Les méandres de la LPP",
         icon: FileText,
         desc: "Décryptage de la prévoyance professionnelle.",
-        pdf: "/PDF/Les-Meandres-de-la-LPP.pdf"
+        pdf: "/PDF/assurance 1/Les-Meandres-de-la-LPP.pdf"
     },
     {
-        id: 9,
+        id: 5,
         title: "Les assurances sociales en Suisse",
         icon: Building,
         desc: "Panorama des protections sociales.",
-        pdf: "/PDF/Les-assurances-sociales-en-Suisse.pdf"
+        pdf: "/PDF/assurance 1/Les-assurances-sociales-en-Suisse.pdf"
     },
     {
-        id: 10,
-        title: "Optimisation des structures juridiques",
-        icon: Gavel,
-        desc: "Choisir la structure adaptée au cabinet.",
-        pdf: "/PDF/Optimisation-des-Structures-Juridiques-pour-Cabinets-Medicaux.pdf"
-    },
-    {
-        id: 11,
-        title: "Planification financière pour médecins",
-        icon: FileText,
-        desc: "Construire une stratégie patrimoniale solide.",
-        pdf: "/PDF/Planification-Financiere-pour-Medecins.pdf"
-    },
-    {
-        id: 12,
-        title: "Prévoyance et fiscalité",
-        icon: TrendingUp,
-        desc: "Le duo gagnant pour votre avenir.",
-        pdf: "/PDF/Prevoyance-et-Fiscalite-Le-Duo-Gagnant-pour-Votre-Avenir.pdf"
-    },
-    {
-        id: 13,
+        id: 6,
         title: "Protection juridique pour médecins",
         icon: Stethoscope,
         desc: "Sécuriser votre activité médicale.",
-        pdf: "/PDF/Protection-Juridique-pour-Medecins.pdf"
+        pdf: "/PDF/assurance 1/Protection-Juridique-pour-Medecins.pdf"
     }
 ]
 
-const FIRST_CARDS = CARDS.slice(0, 6)
-const SECOND_CARDS = CARDS.slice(6)
+// Deuxième carrousel (analyse 2)
+const SECOND_CARDS = [
+    {
+        id: 7,
+        title: "Analyse des cyberattaques en Suisse",
+        icon: Shield,
+        desc: "Cybersécurité et risques numériques.",
+        pdf: "/PDF/analyse 2/Analyse-Cyberattaques-en-Suisse.pdf"
+    },
+    {
+        id: 8,
+        title: "Comment lancer votre cabinet médical",
+        icon: Briefcase,
+        desc: "Les étapes clés pour démarrer sereinement.",
+        pdf: "/PDF/analyse 2/Comment-lancer-votre-cabinet-medical.pdf"
+    },
+    {
+        id: 9,
+        title: "Hypothèques pour médecins",
+        icon: Landmark,
+        desc: "Solutions de financement immobilier adaptées.",
+        pdf: "/PDF/analyse 2/Hypotheques-pour-Medecins.pdf"
+    },
+    {
+        id: 10,
+        title: "La balance du TARDOC",
+        icon: Scale,
+        desc: "Comprendre les enjeux tarifaires.",
+        pdf: "/PDF/analyse 2/La-balance-du-Tardoc.pdf"
+    },
+    {
+        id: 11,
+        title: "Optimisation des structures juridiques",
+        icon: Gavel,
+        desc: "Choisir la structure adaptée au cabinet.",
+        pdf: "/PDF/analyse 2/Optimisation-des-Structures-Juridiques-pour-Cabinets-Medicaux.pdf"
+    },
+    {
+        id: 12,
+        title: "Planification financière pour médecins",
+        icon: FileText,
+        desc: "Construire une stratégie patrimoniale solide.",
+        pdf: "/PDF/analyse 2/Planification-Financiere-pour-Medecins.pdf"
+    },
+    {
+        id: 13,
+        title: "Prévoyance et fiscalité",
+        icon: TrendingUp,
+        desc: "Le duo gagnant pour votre avenir.",
+        pdf: "/PDF/analyse 2/Prevoyance-et-Fiscalite-Le-Duo-Gagnant-pour-Votre-Avenir.pdf"
+    }
+]
 
 function CarouselRing({ cards, visibleCardCount }) {
     const [isAnimating, setIsAnimating] = useState(false)
@@ -235,7 +237,7 @@ function CarouselRing({ cards, visibleCardCount }) {
                     return (
                         <motion.div
                             key={`${card.id}-${index}`}
-                            className="absolute inset-0 bg-white rounded-3xl p-4 md:p-8 shadow-xl border border-gray-100 flex flex-col items-center text-center justify-between backface-visible transition-colors select-none"
+                            className="absolute inset-0 bg-white rounded-3xl p-4 md:p-8 shadow-xl border-2 border-gray-200 flex flex-col items-center text-center justify-between backface-visible transition-colors select-none hover:border-accent/50"
                             style={{
                                 transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                                 opacity: slotOpacities[index]

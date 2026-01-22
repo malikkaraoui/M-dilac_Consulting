@@ -38,12 +38,13 @@ export default function Distinction() {
                     {features.map((feature, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 15 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                            whileHover={{ y: -5 }}
-                            className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-soft transition-all duration-300 border border-transparent hover:border-gray-100"
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ delay: index * 0.08, duration: 0.4, ease: "easeOut" }}
+                            whileHover={{ y: -4 }}
+                            style={{ willChange: 'transform' }}
+                            className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-soft transition-shadow duration-200 border border-transparent hover:border-gray-100"
                         >
                             <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:text-accent transition-colors">
                                 <feature.icon size={24} strokeWidth={1.5} />

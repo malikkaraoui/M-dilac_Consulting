@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Button } from '../ui/Button'
 
@@ -95,7 +96,14 @@ export default function Contact() {
     return (
         <section className="py-24 bg-white" id="contact">
             <div className="container mx-auto px-6 max-w-4xl">
-                <div className="bg-primary rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden relative">
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    style={{ willChange: 'transform, opacity' }}
+                    className="bg-primary rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden relative"
+                >
                     {/* Background decoration */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
 
@@ -106,7 +114,7 @@ export default function Contact() {
                                 Que vous soyez en début de carrière ou à l'approche de la retraite, un premier échange ne vous engage à rien.
                             </p>
                             <div className="space-y-4 text-sm text-blue-200">
-                                <p>📍 Suisse Romande</p>
+                                <p>📍 Rue de la Corraterie 10, 1204 Genève</p>
                                 <a
                                     href="https://wa.me/41793938013"
                                     target="_blank"
@@ -127,6 +135,26 @@ export default function Contact() {
                                     <span aria-hidden>✉️</span>
                                     <span className="underline underline-offset-4 decoration-white/30 hover:decoration-white">
                                         vincent.limbach@medilac.ch
+                                    </span>
+                                </a>
+                                <a
+                                    href="https://www.linkedin.com/in/vincent-limbach-1329b660/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 hover:text-white transition-colors w-fit"
+                                    aria-label="LinkedIn"
+                                >
+                                    <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M20.447 20.452H16.89v-5.569c0-1.328-.026-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.345V9h3.414v1.561h.046c.476-.9 1.636-1.85 3.368-1.85 3.599 0 4.265 2.368 4.265 5.451v6.29zM5.337 7.433c-1.144 0-2.069-.927-2.069-2.07 0-1.144.925-2.07 2.069-2.07 1.143 0 2.07.926 2.07 2.07 0 1.143-.927 2.07-2.07 2.07zM6.985 20.452H3.689V9h3.296v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                    </svg>
+                                    <span className="underline underline-offset-4 decoration-white/30 hover:decoration-white">
+                                        LinkedIn
                                     </span>
                                 </a>
                             </div>
@@ -235,7 +263,7 @@ export default function Contact() {
                             </form>
                         )}
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     )

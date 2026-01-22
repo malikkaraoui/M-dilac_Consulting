@@ -8,10 +8,11 @@ export default function Protection() {
                 <div className="flex flex-col md:flex-row gap-12 items-start md:items-center">
 
                     <motion.div
-                        initial={{ opacity: 0, x: -20 }}
+                        initial={{ opacity: 0, x: -15 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        style={{ willChange: 'transform, opacity' }}
                         className="flex-1"
                     >
                         <div className="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center mb-6 text-accent">
@@ -23,10 +24,11 @@ export default function Protection() {
                     </motion.div>
 
                     <motion.div
-                        initial={{ opacity: 0, x: 20 }}
+                        initial={{ opacity: 0, x: 15 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
+                        style={{ willChange: 'transform, opacity' }}
                         className="flex-1"
                     >
                         <p className="text-lg text-secondary leading-relaxed mb-6">
