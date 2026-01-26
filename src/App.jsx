@@ -18,7 +18,6 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <About />
       <div id="expertise">
         <Protection />
         <Distinction />
@@ -34,6 +33,7 @@ function HomePage() {
       <div id="contact">
         <Contact />
       </div>
+      <About />
       <Testimonials />
       <Partners />
       <Footer />
