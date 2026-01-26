@@ -10,42 +10,42 @@ const FIRST_CARDS = [
         title: "Assurance perte de gain",
         icon: Anchor,
         desc: "Protéger vos revenus en cas d'incapacité.",
-        pdf: "/PDF/assurance 1/Assurance-Perte-de-Gain.pdf"
+        pdf: "/PDF/assurance/Assurance-Perte-de-Gain.pdf"
     },
     {
         id: 2,
         title: "Boostez votre retraite",
         icon: TrendingUp,
         desc: "Stratégies pour renforcer votre prévoyance.",
-        pdf: "/PDF/assurance 1/Boostez-votre-retraite.pdf"
+        pdf: "/PDF/assurance/Boostez-votre-retraite.pdf"
     },
     {
         id: 3,
         title: "Responsabilité civile professionnelle",
         icon: ShieldCheck,
         desc: "Couverture essentielle des médecins indépendants.",
-        pdf: "/PDF/assurance 1/La-Responsabilite-Civile-Professionnelle-pour-Medecins-Independants.pdf"
+        pdf: "/PDF/assurance/La-Responsabilite-Civile-Professionnelle-pour-Medecins-Independants.pdf"
     },
     {
         id: 4,
         title: "Les méandres de la LPP",
         icon: FileText,
         desc: "Décryptage de la prévoyance professionnelle.",
-        pdf: "/PDF/assurance 1/Les-Meandres-de-la-LPP.pdf"
+        pdf: "/PDF/assurance/Les-Meandres-de-la-LPP.pdf"
     },
     {
         id: 5,
         title: "Les assurances sociales en Suisse",
         icon: Building,
         desc: "Panorama des protections sociales.",
-        pdf: "/PDF/assurance 1/Les-assurances-sociales-en-Suisse.pdf"
+        pdf: "/PDF/analyse 2/Les-assurances-sociales-en-Suisse.pdf"
     },
     {
         id: 6,
         title: "Protection juridique pour médecins",
         icon: Stethoscope,
         desc: "Sécuriser votre activité médicale.",
-        pdf: "/PDF/assurance 1/Protection-Juridique-pour-Medecins.pdf"
+        pdf: "/PDF/assurance/Protection-Juridique-pour-Medecins.pdf"
     }
 ]
 
@@ -70,7 +70,7 @@ const SECOND_CARDS = [
         title: "Hypothèques pour médecins",
         icon: Landmark,
         desc: "Solutions de financement immobilier adaptées.",
-        pdf: "/PDF/analyse 2/Hypotheques-pour-Medecins.pdf"
+        pdf: "/PDF/assurance/Hypotheques-pour-Medecins.pdf"
     },
     {
         id: 10,
@@ -98,7 +98,7 @@ const SECOND_CARDS = [
         title: "Prévoyance et fiscalité",
         icon: TrendingUp,
         desc: "Le duo gagnant pour votre avenir.",
-        pdf: "/PDF/analyse 2/Prevoyance-et-Fiscalite-Le-Duo-Gagnant-pour-Votre-Avenir.pdf"
+        pdf: "/PDF/analyse 2/Prevoyance-and-Fiscalite-Le-Duo-Gagnant-pour-Votre-Avenir.pdf"
     }
 ]
 
