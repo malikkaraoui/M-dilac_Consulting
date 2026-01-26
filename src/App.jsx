@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import Hero from './components/sections/Hero'
+import About from './components/sections/About'
 import Protection from './components/sections/Protection'
 import Distinction from './components/sections/Distinction'
 import { CarouselSectionFirst, CarouselSectionSecond } from './components/sections/CarouselSection'
@@ -17,6 +18,7 @@ function HomePage() {
   return (
     <>
       <Hero />
+      <About />
       <div id="expertise">
         <Protection />
         <Distinction />
