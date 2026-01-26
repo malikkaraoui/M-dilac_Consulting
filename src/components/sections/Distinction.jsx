@@ -30,7 +30,7 @@ export default function Distinction() {
             <div className="container mx-auto px-6">
 
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold text-primary mb-4">Ce qui nous distingue</h2>
+                    <h2 className="text-3xl font-bold text-primary mb-4">Nos différences font notre force</h2>
                     <p className="text-secondary max-w-2xl mx-auto">Une approche dédiée, transparente et centrée sur vos intérêts.</p>
                 </div>
 
