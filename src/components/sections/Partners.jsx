@@ -11,6 +11,11 @@ export default function Partners() {
             name: 'Medilec S.A.',
             href: 'https://www.medilec.ch',
             logo: '/Medilec.png'
+        },
+        {
+            name: 'Kredo',
+            href: 'https://www.kredo.swiss',
+            logo: '/Kredo.png'
         }
     ]
 
