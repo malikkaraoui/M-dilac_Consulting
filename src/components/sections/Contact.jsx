@@ -157,6 +157,9 @@ export default function Contact() {
                                         LinkedIn
                                     </span>
                                 </a>
+                                <p className="text-xs text-blue-200/70 pl-6">
+                                    FINMA de Médilac Consulting : F01540914
+                                </p>
                             </div>
                         </div>
 
