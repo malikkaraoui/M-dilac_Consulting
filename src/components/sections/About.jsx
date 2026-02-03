@@ -45,7 +45,7 @@ export default function About() {
                         </p>
 
                         <p className="text-lg text-secondary leading-relaxed">
-                            Dans un environnement exigeant et souvent complexe, notre rôle est d'apporter de la <span className="font-semibold text-primary">clarté</span>. Nous analysons chaque situation avec précision afin de la transformer en stratégies concrètes, cohérentes et alignées avec la réalité professionnelle et personnelle de nos clients.
+                            Dans un environnement exigeant et souvent complexe, notre rôle est d'apporter de la clarté. Nous analysons chaque situation avec précision afin de la transformer en stratégies concrètes, cohérentes et alignées avec la réalité professionnelle et personnelle de nos clients.
                         </p>
 
                         <p className="text-lg text-secondary leading-relaxed">
