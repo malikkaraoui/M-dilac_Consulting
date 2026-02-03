@@ -109,6 +109,7 @@ export default function Contact() {
 
                     <div className="grid md:grid-cols-2 gap-12 relative z-10">
                         <div className="text-white">
+                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">Demande de contact</h3>
                             <div className="space-y-4 text-sm text-blue-200">
                                 <p>📍 Rue de la Corraterie 10, 1204 Genève</p>
                                 <a
@@ -182,7 +183,6 @@ export default function Contact() {
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-4">
-                                <h3 className="text-xl font-bold text-white mb-2">Demande de contact</h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <input
                                         type="text"
