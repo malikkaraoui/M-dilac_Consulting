@@ -1,16 +1,11 @@
 import { motion } from 'framer-motion'
-import { HeartPulse, Scale, CheckCircle, Users } from 'lucide-react'
+import { HeartPulse, CheckCircle, Users } from 'lucide-react'
 
 const features = [
     {
         icon: HeartPulse,
         title: "Spécialisation médicale",
         desc: "Une expertise pointue des enjeux financiers des professionnels de santé."
-    },
-    {
-        icon: Scale,
-        title: "Approche indépendante",
-        desc: "Des conseils objectifs, sans conflit d'intérêt avec les assureurs ou banques."
     },
     {
         icon: CheckCircle,

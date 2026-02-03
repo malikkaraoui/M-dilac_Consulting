@@ -289,8 +289,8 @@ export function CarouselSectionFirst() {
     return (
         <section className="py-32 bg-white overflow-hidden" id="themes">
             <div className="container mx-auto px-6 text-center mb-20">
-                <h2 className="text-3xl md:text-5xl font-bold text-primary mb-6">Explorez vos thématiques</h2>
-                <p className="text-secondary max-w-xl mx-auto text-lg">Accédez directement à nos guides PDF, sans inscription.</p>
+                <h2 className="text-3xl md:text-5xl font-bold text-primary mb-6">Explorez les Thématiques</h2>
+                <p className="text-secondary max-w-xl mx-auto text-lg">Accédez directement à nos guides PDF.</p>
             </div>
 
             <CarouselRing cards={FIRST_CARDS} visibleCardCount={6} />

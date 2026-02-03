@@ -109,24 +109,8 @@ export default function Contact() {
 
                     <div className="grid md:grid-cols-2 gap-12 relative z-10">
                         <div className="text-white">
-                            <h2 className="text-3xl font-bold mb-4">Parlons de votre situation</h2>
-                            <p className="text-blue-100 mb-8 leading-relaxed">
-                                Que vous soyez en début de carrière ou à l'approche de la retraite, un premier échange ne vous engage à rien.
-                            </p>
                             <div className="space-y-4 text-sm text-blue-200">
                                 <p>📍 Rue de la Corraterie 10, 1204 Genève</p>
-                                <a
-                                    href="https://wa.me/41793938013"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 hover:text-white transition-colors w-fit"
-                                    aria-label="Ouvrir WhatsApp pour contacter le +41 79 393 80 13"
-                                >
-                                    <span aria-hidden>📞</span>
-                                    <span className="underline underline-offset-4 decoration-white/30 hover:decoration-white">
-                                        +41 79 393 80 13
-                                    </span>
-                                </a>
                                 <a
                                     href="mailto:vincent.limbach@medilac.ch"
                                     className="flex items-center gap-2 hover:text-white transition-colors w-fit"

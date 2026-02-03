@@ -22,12 +22,13 @@ export default function About() {
                     >
                         <div className="relative">
                             <div className="absolute -inset-4 bg-accent/10 rounded-3xl blur-2xl opacity-30"></div>
-                            <img 
-                                src="/vincent.png" 
-                                alt="Vincent, fondateur de Médilac Consulting" 
+                            <img
+                                src="/vincent.png"
+                                alt="Vincent, fondateur de Médilac Consulting"
                                 className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-2xl shadow-2xl"
                             />
                         </div>
+                        <p className="text-center text-primary font-semibold mt-4">Vincent Limbach<br />Fondateur de Médilac Consulting</p>
                     </motion.div>
 
                     {/* Content Section */}
@@ -40,15 +41,15 @@ export default function About() {
                         className="flex-1 space-y-6"
                     >
                         <p className="text-lg text-secondary leading-relaxed">
-                            <span className="font-semibold text-primary">Vincent Limbach</span>, fondateur de <span className="font-semibold text-primary">Médilac Consulting</span>. J'accompagne les médecins et professionnels de la santé dans leurs prises de décision stratégiques, avec une approche à la fois rigoureuse, humaine et orientée solutions.
+                            Nous accompagnons les médecins et les professionnels de la santé dans leurs prises de décision stratégiques, avec une approche à la fois rigoureuse, humaine et orientée solutions.
                         </p>
 
                         <p className="text-lg text-secondary leading-relaxed">
-                            Dans un environnement exigeant et souvent complexe, mon rôle est de vous apporter de la <span className="font-semibold text-primary">clarté</span>. J'analyse vos enjeux avec précision et les transforme en stratégies concrètes, cohérentes et alignées avec votre réalité professionnelle et personnelle.
+                            Dans un environnement exigeant et souvent complexe, notre rôle est d'apporter de la <span className="font-semibold text-primary">clarté</span>. Nous analysons chaque situation avec précision afin de la transformer en stratégies concrètes, cohérentes et alignées avec la réalité professionnelle et personnelle de nos clients.
                         </p>
 
                         <p className="text-lg text-secondary leading-relaxed">
-                            Fort d'une connaissance approfondie des spécificités du milieu médical, je propose un accompagnement sur mesure, fondé sur l'écoute, la discrétion et une relation de confiance inscrite dans la durée.
+                            Forts d'une connaissance approfondie des spécificités du milieu médical, nous proposons un accompagnement sur mesure, fondé sur l'écoute, la discrétion et une relation de confiance inscrite dans la durée.
                         </p>
 
                         {/* Location */}
