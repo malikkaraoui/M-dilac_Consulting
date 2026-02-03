@@ -5,13 +5,11 @@ import About from './components/sections/About'
 import Protection from './components/sections/Protection'
 import Distinction from './components/sections/Distinction'
 import { CarouselSectionFirst, CarouselSectionSecond } from './components/sections/CarouselSection'
-import Approach from './components/sections/Approach'
 import Partners from './components/sections/Partners'
 import Blog from './components/sections/Blog'
 import Contact from './components/sections/Contact'
 import Testimonials from './components/sections/Testimonials'
 import Footer from './components/layout/Footer'
-import BlogPage from './pages/BlogPage'
 import LegalPrivacyPage from './pages/LegalPrivacyPage'
 
 function HomePage() {
@@ -23,13 +21,10 @@ function HomePage() {
         <Distinction />
       </div>
       <CarouselSectionFirst />
-      <div id="method">
-        <Approach />
-      </div>
-      <div id="blog">
+      <CarouselSectionSecond />
+      <div id="faq">
         <Blog />
       </div>
-      <CarouselSectionSecond />
       <div id="contact">
         <Contact />
       </div>
@@ -49,7 +44,6 @@ function App() {
           <HomePage />
         </Layout>
       } />
-      <Route path="/blog" element={<BlogPage />} />
       <Route path="/politique-confidentialite" element={<LegalPrivacyPage />} />
     </Routes>
   )

@@ -301,6 +301,10 @@ export function CarouselSectionFirst() {
 export function CarouselSectionSecond() {
     return (
         <section className="py-24 bg-white overflow-hidden">
+            <div className="container mx-auto px-6 text-center mb-20">
+                <h2 className="text-3xl md:text-5xl font-bold text-primary mb-6">Analyses & Conseils</h2>
+                <p className="text-secondary max-w-xl mx-auto text-lg">L'actualité financière décryptée pour les médecins.</p>
+            </div>
             <CarouselRing cards={SECOND_CARDS} visibleCardCount={7} />
         </section>
     )

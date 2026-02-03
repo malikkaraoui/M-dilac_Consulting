@@ -19,9 +19,8 @@ export default function Navbar() {
     const navLinks = [
         { name: 'Qui sommes-nous', href: '#about' },
         { name: 'Thèmes', href: '#themes' },
-        { name: 'Méthode', href: '#method' },
         { name: 'Témoignages', href: '#testimonials' },
-        { name: 'Blog', href: '#blog' },
+        { name: 'FAQ', href: '#faq' },
     ];
 
     const scrollToContact = () => {

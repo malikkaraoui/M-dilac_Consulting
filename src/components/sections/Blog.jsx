@@ -1,78 +1,84 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, Calendar } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import { Button } from '../ui/Button'
+import { ChevronDown, ChevronUp } from 'lucide-react'
 
-const articles = [
+const faqItems = [
     {
-        tag: "Fiscalité",
-        title: "Optimiser sa fiscalité en tant que médecin indépendant",
-        date: "12 Oct, 2025"
+        question: "Quand dois-je commencer à planifier ma prévoyance ?",
+        answer: "Le plus tôt possible ! Idéalement dès le début de votre activité indépendante. Plus vous commencez tôt, plus vous bénéficiez de l'effet des intérêts composés et plus votre cotisation mensuelle sera faible pour atteindre vos objectifs."
     },
     {
-        tag: "Installation",
-        title: "Reprendre un cabinet : les pièges à éviter",
-        date: "08 Oct, 2025"
+        question: "Quelle est la différence entre le 2ème et le 3ème pilier ?",
+        answer: "Le 2ème pilier (LPP) est obligatoire pour les salariés et facultatif pour les indépendants. Le 3ème pilier est une prévoyance privée facultative qui offre des avantages fiscaux importants. Pour les médecins indépendants, le 3ème pilier lié (3a) permet de déduire jusqu'à CHF 36'288 par an (montant 2025)."
     },
     {
-        tag: "Prévoyance",
-        title: "Comprendre le 3ème pilier bancaire vs assurance",
-        date: "25 Sep, 2025"
+        question: "Comment évaluer le prix d'un cabinet à reprendre ?",
+        answer: "L'évaluation comprend plusieurs éléments : le goodwill (clientèle), le matériel médical, les locaux, et les contrats en cours. En général, le goodwill représente 70-100% du chiffre d'affaires annuel. Il est essentiel de faire appel à un expert pour une évaluation objective."
+    },
+    {
+        question: "Quelles sont les principales déductions fiscales pour un médecin indépendant ?",
+        answer: "Vous pouvez déduire : les frais professionnels (loyer, matériel, personnel), les cotisations au 2ème et 3ème pilier, les frais de formation continue, les assurances professionnelles, les intérêts sur emprunts professionnels, et une partie de vos frais de véhicule si usage professionnel."
+    },
+    {
+        question: "Quelle couverture d'assurance perte de gain choisir ?",
+        answer: "Privilégiez une couverture de 80% de votre revenu avec un délai d'attente adapté à vos réserves (30, 60 ou 90 jours). Vérifiez les exclusions, notamment pour les affections psychiques, et optez pour une durée de versement jusqu'à l'âge de la retraite."
     }
 ]
 
 export default function Blog() {
+    const [openFaqIndex, setOpenFaqIndex] = useState(null)
+
+    const toggleFaq = (index) => {
+        setOpenFaqIndex(openFaqIndex === index ? null : index)
+    }
+
     return (
-        <section className="py-24 bg-gray-50" id="blog">
-            <div className="container mx-auto px-6">
-                <motion.div 
+        <section className="py-24 bg-gray-50" id="faq">
+            <div className="container mx-auto px-6 max-w-4xl">
+                <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="flex justify-between items-end mb-12"
+                    className="text-center mb-12"
                 >
-                    <div>
-                        <h2 className="text-3xl font-bold text-primary mb-2">Analyses & Conseils</h2>
-                        <p className="text-secondary">L'actualité financière décryptée pour les médecins.</p>
-                    </div>
-                    <Link to="/blog">
-                        <Button variant="ghost" className="hidden md:inline-flex">
-                            Voir tous les articles <ArrowRight className="ml-2 w-4 h-4" />
-                        </Button>
-                    </Link>
+                    <h2 className="text-3xl font-bold text-primary mb-2">Foire aux questions</h2>
+                    <p className="text-secondary">Les réponses aux questions les plus fréquentes</p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {articles.map((article, index) => (
-                        <motion.div 
-                            key={index} 
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.3, delay: index * 0.08, ease: "easeOut" }}
-                            whileHover={{ y: -4 }}
-                            style={{ willChange: 'transform' }}
-                            className="bg-white p-6 rounded-2xl border border-gray-100 hover:shadow-soft transition-shadow duration-200 group cursor-pointer"
-                        >
-                            <span className="inline-block px-3 py-1 bg-gray-100 text-xs font-semibold text-secondary rounded-full mb-4">
-                                {article.tag}
-                            </span>
-                            <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
-                                {article.title}
-                            </h3>
-                            <div className="flex items-center text-xs text-secondary/60 mt-auto pt-4">
-                                <Calendar size={14} className="mr-2" /> {article.date}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+                    className="bg-white p-8 rounded-2xl border border-gray-100"
+                >
+                    <div className="space-y-4">
+                        {faqItems.map((item, index) => (
+                            <div
+                                key={index}
+                                className="border border-gray-100 rounded-xl overflow-hidden transition-all"
+                            >
+                                <button
+                                    onClick={() => toggleFaq(index)}
+                                    className="w-full px-6 py-4 flex justify-between items-center text-left hover:bg-gray-50 transition-colors"
+                                >
+                                    <span className="font-semibold text-primary pr-4">{item.question}</span>
+                                    {openFaqIndex === index ? (
+                                        <ChevronUp className="w-5 h-5 text-accent shrink-0" />
+                                    ) : (
+                                        <ChevronDown className="w-5 h-5 text-secondary shrink-0" />
+                                    )}
+                                </button>
+                                {openFaqIndex === index && (
+                                    <div className="px-6 pb-4 text-secondary">
+                                        {item.answer}
+                                    </div>
+                                )}
                             </div>
-                        </motion.div>
-                    ))}
-                </div>
-
-                <div className="mt-8 text-center md:hidden">
-                    <Link to="/blog">
-                        <Button variant="ghost">Voir tous les articles</Button>
-                    </Link>
-                </div>
+                        ))}
+                    </div>
+                </motion.div>
             </div>
         </section>
     )

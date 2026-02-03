@@ -1,92 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Calendar, ArrowLeft, ChevronDown, ChevronUp } from 'lucide-react';
+import { ArrowLeft, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import Footer from '../components/layout/Footer';
 import { cn } from '../lib/utils';
-
-const blogArticles = [
-    {
-        id: 1,
-        tag: "Fiscalité",
-        title: "Optimiser sa fiscalité en tant que médecin indépendant",
-        date: "12 Oct, 2025",
-        excerpt: "Découvrez les stratégies essentielles pour réduire votre charge fiscale tout en respectant la législation suisse.",
-        content: "La fiscalité des médecins indépendants en Suisse présente des opportunités d'optimisation importantes. Que vous soyez en début de carrière ou expérimenté, comprendre les déductions possibles et la planification fiscale est crucial.",
-        link: "#fiscalite"
-    },
-    {
-        id: 2,
-        tag: "Installation",
-        title: "Reprendre un cabinet : les pièges à éviter",
-        date: "08 Oct, 2025",
-        excerpt: "Les points de vigilance lors de la reprise d'un cabinet médical pour éviter les erreurs coûteuses.",
-        content: "La reprise d'un cabinet médical est une étape majeure. De l'évaluation du goodwill à la vérification des contrats en cours, plusieurs aspects nécessitent une attention particulière.",
-        link: "#installation"
-    },
-    {
-        id: 3,
-        tag: "Prévoyance",
-        title: "Comprendre le 3ème pilier bancaire vs assurance",
-        date: "25 Sep, 2025",
-        excerpt: "Analyse comparative des solutions de prévoyance pour faire le meilleur choix selon votre situation.",
-        content: "Le 3ème pilier est un élément clé de la prévoyance en Suisse. Choisir entre la solution bancaire et l'assurance dépend de nombreux facteurs personnels et professionnels.",
-        link: "#prevoyance"
-    },
-    {
-        id: 4,
-        tag: "Gestion",
-        title: "Structurer sa société médicale : SARL ou raison individuelle ?",
-        date: "15 Sep, 2025",
-        excerpt: "Les avantages et inconvénients de chaque forme juridique pour votre activité médicale.",
-        content: "Le choix de la structure juridique a des implications fiscales, sociales et patrimoniales importantes pour un médecin.",
-        link: "#gestion"
-    },
-    {
-        id: 5,
-        tag: "Investissement",
-        title: "Diversifier son patrimoine : immobilier médical",
-        date: "01 Sep, 2025",
-        excerpt: "Comment investir intelligemment dans l'immobilier professionnel médical.",
-        content: "L'investissement dans l'immobilier médical peut offrir des avantages fiscaux et patrimoniaux intéressants.",
-        link: "#investissement"
-    },
-    {
-        id: 6,
-        tag: "Prévoyance",
-        title: "Assurance perte de gain : bien choisir sa couverture",
-        date: "20 Août, 2025",
-        excerpt: "Les critères essentiels pour sélectionner une assurance perte de gain adaptée à votre pratique.",
-        content: "Une protection adéquate en cas d'incapacité de travail est fondamentale pour les médecins indépendants.",
-        link: "#prevoyance"
-    },
-    {
-        id: 7,
-        tag: "Fiscalité",
-        title: "Déductions fiscales pour le matériel médical",
-        date: "10 Août, 2025",
-        excerpt: "Maximiser vos déductions fiscales sur les investissements en équipement médical.",
-        content: "Les investissements en matériel médical peuvent être optimisés fiscalement avec une bonne planification.",
-        link: "#fiscalite"
-    },
-    {
-        id: 8,
-        tag: "Retraite",
-        title: "Préparer sa retraite en tant que médecin indépendant",
-        date: "28 Juil, 2025",
-        excerpt: "Les étapes clés pour assurer votre sécurité financière à la retraite.",
-        content: "La planification de la retraite nécessite une approche structurée et anticipée pour les médecins indépendants.",
-        link: "#retraite"
-    },
-    {
-        id: 9,
-        tag: "Installation",
-        title: "Financer l'ouverture de son cabinet médical",
-        date: "15 Juil, 2025",
-        excerpt: "Options de financement et stratégies pour démarrer votre activité en toute sérénité.",
-        content: "L'ouverture d'un cabinet nécessite un financement adapté et une bonne gestion de trésorerie.",
-        link: "#installation"
-    }
-];
 
 const faqItems = [
     {
@@ -117,7 +33,7 @@ export default function BlogPage() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        
+
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
         };
@@ -135,8 +51,8 @@ export default function BlogPage() {
             <nav
                 className={cn(
                     "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-                    isScrolled 
-                        ? "bg-primary/95 backdrop-blur-md shadow-lg py-3" 
+                    isScrolled
+                        ? "bg-primary/95 backdrop-blur-md shadow-lg py-3"
                         : "bg-primary py-5"
                 )}
             >
@@ -154,41 +70,17 @@ export default function BlogPage() {
             {/* Header */}
             <div className="bg-primary text-white pt-32 pb-20">
                 <div className="container mx-auto px-6">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4">Analyses & Conseils</h1>
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4">Foire aux questions</h1>
                     <p className="text-xl text-white/80 max-w-2xl">
-                        L'actualité financière décryptée pour les médecins. 
-                        Conseils pratiques et analyses approfondies pour optimiser votre situation.
+                        Les réponses aux questions les plus fréquentes sur la prévoyance,
+                        la fiscalité et l'installation des médecins indépendants.
                     </p>
                 </div>
             </div>
 
-            {/* Articles */}
+            {/* FAQ */}
             <div className="container mx-auto px-6 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    {blogArticles.map((article) => (
-                        <div
-                            key={article.id}
-                            className="bg-white p-6 rounded-2xl border border-gray-100 hover:shadow-soft transition-all group cursor-pointer"
-                        >
-                            <span className="inline-block px-3 py-1 bg-accent/10 text-xs font-semibold text-accent rounded-full mb-4">
-                                {article.tag}
-                            </span>
-                            <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
-                                {article.title}
-                            </h3>
-                            <p className="text-secondary text-sm mb-4">{article.excerpt}</p>
-                            <div className="flex items-center text-xs text-secondary/60 mt-auto pt-4 border-t border-gray-100">
-                                <Calendar size={14} className="mr-2" /> {article.date}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                {/* FAQ */}
                 <div className="bg-white p-8 rounded-2xl border border-gray-100">
-                    <h2 className="text-2xl font-bold text-primary mb-2">Foire aux questions</h2>
-                    <p className="text-secondary mb-8">Les réponses aux questions les plus fréquentes</p>
-                    
                     <div className="space-y-4">
                         {faqItems.map((item, index) => (
                             <div

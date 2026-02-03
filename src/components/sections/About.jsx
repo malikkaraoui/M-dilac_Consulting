@@ -40,35 +40,16 @@ export default function About() {
                         className="flex-1 space-y-6"
                     >
                         <p className="text-lg text-secondary leading-relaxed">
-                            Je m'appelle <span className="font-semibold text-primary">Vincent</span>, fondateur de <span className="font-semibold text-primary">Médilac Consulting</span>. J'accompagne les médecins et professionnels de la santé dans leurs prises de décision stratégiques, avec une approche à la fois rigoureuse, humaine et orientée solutions.
+                            <span className="font-semibold text-primary">Vincent Limbach</span>, fondateur de <span className="font-semibold text-primary">Médilac Consulting</span>. J'accompagne les médecins et professionnels de la santé dans leurs prises de décision stratégiques, avec une approche à la fois rigoureuse, humaine et orientée solutions.
                         </p>
-                        
+
                         <p className="text-lg text-secondary leading-relaxed">
                             Dans un environnement exigeant et souvent complexe, mon rôle est de vous apporter de la <span className="font-semibold text-primary">clarté</span>. J'analyse vos enjeux avec précision et les transforme en stratégies concrètes, cohérentes et alignées avec votre réalité professionnelle et personnelle.
                         </p>
-                        
+
                         <p className="text-lg text-secondary leading-relaxed">
                             Fort d'une connaissance approfondie des spécificités du milieu médical, je propose un accompagnement sur mesure, fondé sur l'écoute, la discrétion et une relation de confiance inscrite dans la durée.
                         </p>
-
-                        {/* Philosophy Section */}
-                        <div className="pt-6 border-t border-gray-200">
-                            <h3 className="text-2xl font-bold text-primary mb-4">Ma philosophie</h3>
-                            <ul className="space-y-3">
-                                <li className="flex items-start">
-                                    <span className="inline-block w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                                    <span className="text-secondary">Comprendre en profondeur avant de conseiller</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="inline-block w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                                    <span className="text-secondary">Simplifier sans jamais dénaturer</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="inline-block w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                                    <span className="text-secondary">Construire des solutions pérennes et évolutives</span>
-                                </li>
-                            </ul>
-                        </div>
 
                         {/* Location */}
                         <div className="pt-4">
