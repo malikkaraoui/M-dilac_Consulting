@@ -124,7 +124,7 @@ function CarouselRing({ cards, visibleCardCount }) {
     const wheelTimeoutRef = useRef(null)
     const animationRef = useRef(null)
 
-    const radius = 350
+    const radius = 480
     const angleStep = 360 / visibleCardCount
     const dragThreshold = 80
 
@@ -242,7 +242,7 @@ function CarouselRing({ cards, visibleCardCount }) {
             onMouseLeave={() => setIsPaused(false)}
         >
             <motion.div
-                className="relative w-[200px] h-[280px] md:w-[300px] md:h-[400px] preserve-3d"
+                className="relative w-[180px] h-[260px] md:w-[240px] md:h-[340px] preserve-3d"
                 style={{ rotateY: rotation, transformStyle: 'preserve-3d' }}
             >
                 {Array.from({ length: visibleCardCount }).map((_, index) => {
@@ -251,22 +251,22 @@ function CarouselRing({ cards, visibleCardCount }) {
                     return (
                         <motion.div
                             key={`${card.id}-${index}`}
-                            className="absolute inset-0 bg-white rounded-3xl p-4 md:p-8 shadow-xl border-2 border-gray-200 flex flex-col items-center text-center justify-between backface-visible transition-colors select-none hover:border-accent/50"
+                            className="absolute inset-0 bg-white rounded-2xl p-4 md:p-5 shadow-xl border-2 border-gray-200 flex flex-col items-center text-center backface-visible transition-colors select-none hover:border-accent/50"
                             style={{
                                 transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                                 opacity: slotOpacities[index]
                             }}
                         >
-                            <div className="w-12 h-12 md:w-16 md:h-16 bg-accent/5 rounded-2xl flex items-center justify-center text-accent mb-3 md:mb-4">
-                                <card.icon size={24} className="md:w-8 md:h-8" />
+                            <div className="w-10 h-10 md:w-12 md:h-12 bg-accent/5 rounded-xl flex items-center justify-center text-accent shrink-0">
+                                <card.icon size={20} className="md:w-6 md:h-6" />
                             </div>
-                            <div>
-                                <h3 className="text-base md:text-xl font-bold text-primary mb-1 md:mb-2">{card.title}</h3>
-                                <p className="text-xs md:text-sm text-secondary">{card.desc}</p>
+                            <div className="flex-1 flex flex-col justify-center py-2 md:py-3">
+                                <h3 className="text-sm md:text-base font-bold text-primary mb-1 line-clamp-2">{card.title}</h3>
+                                <p className="text-[10px] md:text-xs text-secondary line-clamp-2">{card.desc}</p>
                             </div>
                             <Button
                                 variant="outline"
-                                className="w-full mt-3 md:mt-4 group text-sm md:text-base py-2 md:py-3"
+                                className="w-full shrink-0 text-xs md:text-sm py-1.5 md:py-2"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     handleCardClick(card);

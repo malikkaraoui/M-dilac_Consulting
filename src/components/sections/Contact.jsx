@@ -170,14 +170,14 @@ export default function Contact() {
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-4">
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <input
                                         type="text"
                                         name="nom"
                                         value={formData.nom}
                                         onChange={handleChange}
                                         placeholder="Nom"
-                                        className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:bg-white/20 transition-all"
+                                        className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:bg-white/20 transition-all text-center md:text-left"
                                     />
                                     <input
                                         type="text"
@@ -185,7 +185,7 @@ export default function Contact() {
                                         value={formData.prenom}
                                         onChange={handleChange}
                                         placeholder="Prénom"
-                                        className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:bg-white/20 transition-all"
+                                        className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:bg-white/20 transition-all text-center md:text-left"
                                     />
                                 </div>
                                 <input
@@ -194,7 +194,7 @@ export default function Contact() {
                                     value={formData.email}
                                     onChange={handleChange}
                                     placeholder="Email"
-                                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:bg-white/20 transition-all"
+                                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:bg-white/20 transition-all text-center md:text-left"
                                 />
                                 <div className="relative">
                                     <textarea
@@ -204,7 +204,7 @@ export default function Contact() {
                                         onChange={handleChange}
                                         maxLength={200}
                                         placeholder="Votre message... (max 200 caractères)"
-                                        className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:bg-white/20 transition-all"
+                                        className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:bg-white/20 transition-all text-center md:text-left"
                                     ></textarea>
                                     <span className="absolute bottom-2 right-2 text-xs text-blue-200">
                                         {formData.message.length}/200
