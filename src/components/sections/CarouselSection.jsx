@@ -1,51 +1,65 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, animate, useMotionValue, useTransform } from 'framer-motion'
-import { Shield, TrendingUp, Anchor, Briefcase, FileText, Activity, Scale, Gavel, Building, Stethoscope, Landmark, ShieldCheck } from 'lucide-react'
+import { Shield, TrendingUp, Briefcase, FileText, Scale, Gavel, Stethoscope, Landmark } from 'lucide-react'
 import { Button } from '../ui/Button'
 
-// Premier carrousel (assurance 1)
+// Premier carrousel (ANALYSE 3)
 const FIRST_CARDS = [
     {
         id: 1,
-        title: "Assurance perte de gain",
-        icon: Anchor,
-        desc: "Protéger vos revenus en cas d'incapacité.",
-        pdf: "/PDF/assurance/Assurance-Perte-de-Gain.pdf"
+        title: "Analyse des cyberattaques en Suisse",
+        icon: Shield,
+        desc: "Cybersécurité et risques numériques.",
+        pdf: "/PDF/ANALYSE 3/Analyse-Cyberattaques-en-Suisse.pdf"
     },
     {
         id: 2,
         title: "Boostez votre retraite",
         icon: TrendingUp,
         desc: "Stratégies pour renforcer votre prévoyance.",
-        pdf: "/PDF/assurance/Boostez-votre-retraite.pdf"
+        pdf: "/PDF/ANALYSE 3/Boostez-votre-retraite.pdf"
     },
     {
         id: 3,
-        title: "Responsabilité civile professionnelle",
-        icon: ShieldCheck,
-        desc: "Couverture essentielle des médecins indépendants.",
-        pdf: "/PDF/assurance/La-Responsabilite-Civile-Professionnelle-pour-Medecins-Independants.pdf"
+        title: "Comment lancer votre cabinet médical",
+        icon: Briefcase,
+        desc: "Les étapes clés pour démarrer sereinement.",
+        pdf: "/PDF/ANALYSE 3/Comment-lancer-votre-cabinet-medical.pdf"
     },
     {
         id: 4,
-        title: "Les méandres de la LPP",
-        icon: FileText,
-        desc: "Décryptage de la prévoyance professionnelle.",
-        pdf: "/PDF/assurance/Les-Meandres-de-la-LPP.pdf"
+        title: "Hypothèques pour médecins",
+        icon: Landmark,
+        desc: "Solutions de financement immobilier adaptées.",
+        pdf: "/PDF/ANALYSE 3/Hypotheques-pour-Medecins.pdf"
     },
     {
         id: 5,
-        title: "Les assurances sociales en Suisse",
-        icon: Building,
-        desc: "Panorama des protections sociales.",
-        pdf: "/PDF/analyse 2/Les-assurances-sociales-en-Suisse.pdf"
+        title: "Optimisation des structures juridiques",
+        icon: Gavel,
+        desc: "Choisir la structure adaptée au cabinet.",
+        pdf: "/PDF/ANALYSE 3/Optimisation-des-Structures-Juridiques-pour-Cabinets-Medicaux.pdf"
     },
     {
         id: 6,
-        title: "Protection juridique pour médecins",
+        title: "Planification financière pour médecins",
+        icon: FileText,
+        desc: "Construire une stratégie patrimoniale solide.",
+        pdf: "/PDF/ANALYSE 3/Planification-Financiere-pour-Medecins.pdf"
+    },
+    {
+        id: 7,
+        title: "Prévoyance et fiscalité",
+        icon: Scale,
+        desc: "Le duo gagnant pour votre avenir.",
+        pdf: "/PDF/ANALYSE 3/Prevoyance-and-Fiscalite-Le-Duo-Gagnant-pour-Votre-Avenir.pdf"
+    },
+    {
+        id: 8,
+        title: "Reprise d'un cabinet médical",
         icon: Stethoscope,
-        desc: "Sécuriser votre activité médicale.",
-        pdf: "/PDF/assurance/Protection-Juridique-pour-Medecins.pdf"
+        desc: "Les clés pour reprendre un cabinet avec succès.",
+        pdf: "/PDF/ANALYSE 3/Reprise-dun-cabinet-medical.pdf"
     }
 ]
 
@@ -293,7 +307,7 @@ export function CarouselSectionFirst() {
                 <p className="text-secondary max-w-xl mx-auto text-lg">Accédez directement à nos guides PDF.</p>
             </div>
 
-            <CarouselRing cards={FIRST_CARDS} visibleCardCount={6} />
+            <CarouselRing cards={FIRST_CARDS} visibleCardCount={8} />
         </section>
     )
 }

@@ -29,7 +29,7 @@ export default function Distinction() {
                     <p className="text-secondary max-w-2xl mx-auto">Une approche dédiée, transparente et centrée sur vos intérêts.</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                     {features.map((feature, index) => (
                         <motion.div
                             key={index}

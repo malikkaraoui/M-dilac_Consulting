@@ -18,9 +18,9 @@ function HomePage() {
       <Hero />
       <div id="expertise">
         <Protection />
-        <Distinction />
       </div>
       <CarouselSectionFirst />
+      <Distinction />
       <CarouselSectionSecond />
       <div id="faq">
         <Blog />
