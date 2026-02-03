@@ -13,13 +13,13 @@ export default function Testimonials() {
             id: 2,
             quote: "L'équipe de Médilac Consulting est toujours disponible pour répondre à mes questions et me conseiller. Leur expertise est inestimable, surtout lorsque l'on est occupé par sa pratique médicale.",
             name: "Dr Antoine Homsy",
-            title: "Chirurgien"
+            title: "Chirurgien Esthétique"
         },
         {
             id: 3,
             quote: "Je recommande vivement Médilac Consulting à tous mes collègues. Leur approche personnalisée et leur connaissance du secteur de la santé font toute la différence.",
             name: "Dr Raphaël Meyer",
-            title: "Chirurgien"
+            title: "Chirurgien capillaire et directeur de la Clinique La Croix d'or"
         }
     ]
 
