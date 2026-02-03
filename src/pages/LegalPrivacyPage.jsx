@@ -52,7 +52,7 @@ export default function LegalPrivacyPage() {
                                 <p>Raison individuelle</p>
                                 <p>Siège : Rue de la Corraterie 10</p>
                                 <p>CH-1204 Genève, Suisse</p>
-                                <p>Email : vincent.limbach@medilac.ch</p>
+                                <p>Email : <a href="mailto:vincent.limbach@medilac.ch" className="text-accent hover:underline">vincent.limbach@medilac.ch</a></p>
                                 <p>Téléphone : +41 79 393 80 13</p>
                                 <p>Numéro IDE : CHE-219.824.205</p>
                                 <p>Responsable du contenu :</p>
@@ -116,7 +116,7 @@ export default function LegalPrivacyPage() {
                                         <li>droit à la limitation du traitement</li>
                                     </ul>
                                     <p className="mt-2">Toute demande peut être adressée à :</p>
-                                    <p>vincent.limbach@medilac.ch</p>
+                                    <p><a href="mailto:vincent.limbach@medilac.ch" className="text-accent hover:underline">vincent.limbach@medilac.ch</a></p>
                                 </div>
 
                                 <div>
