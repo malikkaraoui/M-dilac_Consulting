@@ -123,7 +123,6 @@ function CarouselRing({ cards, visibleCardCount }) {
     const rotation = useMotionValue(0)
     const wheelTimeoutRef = useRef(null)
     const animationRef = useRef(null)
-    const startXRef = useRef(0)
     const startRotationRef = useRef(0)
 
     const radius = 480
@@ -201,44 +200,62 @@ function CarouselRing({ cards, visibleCardCount }) {
     const nextCard = () => rotateOnce('next')
     const prevCard = () => rotateOnce('prev')
 
+    // Fonction pour animer vers une position cible
+    const animateToPosition = (targetRotation) => {
+        setIsAnimating(true)
+        if (animationRef.current) animationRef.current.stop()
+        const animation = animate(rotation, targetRotation, {
+            type: "spring",
+            stiffness: 60,
+            damping: 18,
+            onComplete: () => {
+                // Normaliser la rotation entre 0 et 360
+                const normalized = ((targetRotation % 360) + 360) % 360
+                rotation.set(normalized)
+                startRotationRef.current = normalized
+                setIsAnimating(false)
+            }
+        })
+        animationRef.current = animation
+    }
+
     return (
         <motion.div
             className="relative h-[600px] w-full flex items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing touch-none"
-            onPanStart={(_, info) => {
+            onPanStart={() => {
                 setIsPaused(true)
                 isDraggingRef.current = true
-                startXRef.current = info.point.x
+                // Sauvegarder la position de départ (normalisée)
                 startRotationRef.current = rotation.get()
                 if (animationRef.current) animationRef.current.stop()
                 setIsAnimating(false)
             }}
             onPan={(_, info) => {
-                // Sensibilité réduite sur mobile pour un meilleur contrôle
-                const sensitivity = 0.25
-                rotation.set(startRotationRef.current + (info.point.x - startXRef.current) * sensitivity)
+                // Sensibilité réduite pour un meilleur contrôle
+                const sensitivity = 0.2
+                rotation.set(startRotationRef.current + info.offset.x * sensitivity)
             }}
             onPanEnd={(_, info) => {
                 setIsPaused(false)
-                if (animationRef.current) animationRef.current.stop()
 
-                const totalOffset = info.point.x - startXRef.current
                 const velocity = info.velocity.x
+                const offset = info.offset.x
 
-                // Si swipe rapide ou déplacement suffisant, passer à la carte suivante/précédente
-                if (Math.abs(velocity) > 300 || Math.abs(totalOffset) > swipeThreshold) {
-                    const direction = (velocity > 0 || totalOffset > 0) ? 'prev' : 'next'
-                    rotateOnce(direction)
-                } else {
-                    // Sinon, revenir à la position initiale
-                    setIsAnimating(true)
-                    const animation = animate(rotation, startRotationRef.current, {
-                        type: "spring",
-                        stiffness: 100,
-                        damping: 20,
-                        onComplete: () => setIsAnimating(false)
-                    })
-                    animationRef.current = animation
+                // Calculer la direction du swipe
+                let targetRotation = startRotationRef.current
+
+                if (Math.abs(velocity) > 200 || Math.abs(offset) > swipeThreshold) {
+                    // Swipe détecté : passer à la carte suivante/précédente
+                    if (velocity > 0 || (velocity === 0 && offset > 0)) {
+                        // Swipe vers la droite = carte précédente
+                        targetRotation = startRotationRef.current + angleStep
+                    } else {
+                        // Swipe vers la gauche = carte suivante
+                        targetRotation = startRotationRef.current - angleStep
+                    }
                 }
+
+                animateToPosition(targetRotation)
 
                 setTimeout(() => {
                     isDraggingRef.current = false
