@@ -122,6 +122,18 @@ export default function Contact() {
                                     </span>
                                 </a>
                                 <a
+                                    href="https://wa.me/41793938013"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 hover:text-white transition-colors w-fit"
+                                    aria-label="Contacter via WhatsApp"
+                                >
+                                    <span aria-hidden>📞</span>
+                                    <span className="underline underline-offset-4 decoration-white/30 hover:decoration-white">
+                                        +41 (0) 79 393 80 13
+                                    </span>
+                                </a>
+                                <a
                                     href="https://www.linkedin.com/in/vincent-limbach-1329b660/"
                                     target="_blank"
                                     rel="noopener noreferrer"
