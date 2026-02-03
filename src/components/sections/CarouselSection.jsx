@@ -123,10 +123,12 @@ function CarouselRing({ cards, visibleCardCount }) {
     const rotation = useMotionValue(0)
     const wheelTimeoutRef = useRef(null)
     const animationRef = useRef(null)
+    const startXRef = useRef(0)
+    const startRotationRef = useRef(0)
 
     const radius = 480
     const angleStep = 360 / visibleCardCount
-    const dragThreshold = 80
+    const swipeThreshold = 50 // Seuil pour déclencher un changement de carte
 
     const computeOpacity = (slotIndex, rotationValue) => {
         const angle = slotIndex * angleStep + rotationValue
@@ -201,25 +203,43 @@ function CarouselRing({ cards, visibleCardCount }) {
 
     return (
         <motion.div
-            className="relative h-[600px] w-full flex items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing touch-pan-y"
-            onPanStart={() => {
+            className="relative h-[600px] w-full flex items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing touch-none"
+            onPanStart={(_, info) => {
                 setIsPaused(true)
                 isDraggingRef.current = true
+                startXRef.current = info.point.x
+                startRotationRef.current = rotation.get()
                 if (animationRef.current) animationRef.current.stop()
                 setIsAnimating(false)
             }}
             onPan={(_, info) => {
-                rotation.set(rotation.get() + info.delta.x * 0.4)
+                // Sensibilité réduite sur mobile pour un meilleur contrôle
+                const sensitivity = 0.25
+                rotation.set(startRotationRef.current + (info.point.x - startXRef.current) * sensitivity)
             }}
             onPanEnd={(_, info) => {
                 setIsPaused(false)
                 if (animationRef.current) animationRef.current.stop()
-                if (Math.abs(info.offset.x) > dragThreshold) {
-                    snapToNearest()
+
+                const totalOffset = info.point.x - startXRef.current
+                const velocity = info.velocity.x
+
+                // Si swipe rapide ou déplacement suffisant, passer à la carte suivante/précédente
+                if (Math.abs(velocity) > 300 || Math.abs(totalOffset) > swipeThreshold) {
+                    const direction = (velocity > 0 || totalOffset > 0) ? 'prev' : 'next'
+                    rotateOnce(direction)
                 } else {
-                    const animation = animate(rotation, 0, { type: "spring", stiffness: 80, damping: 20 })
+                    // Sinon, revenir à la position initiale
+                    setIsAnimating(true)
+                    const animation = animate(rotation, startRotationRef.current, {
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 20,
+                        onComplete: () => setIsAnimating(false)
+                    })
                     animationRef.current = animation
                 }
+
                 setTimeout(() => {
                     isDraggingRef.current = false
                 }, 50)
