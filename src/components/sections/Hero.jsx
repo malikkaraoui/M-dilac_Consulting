@@ -57,9 +57,6 @@ export default function Hero() {
                         <Button size="lg" className="rounded-full px-8 text-base shadow-lg shadow-accent/20" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
                             Demander un échange <ArrowRight className="ml-2 w-4 h-4" />
                         </Button>
-                        <Button variant="ghost" size="lg" className="rounded-full px-8 text-base" onClick={() => document.getElementById('method')?.scrollIntoView({ behavior: 'smooth' })}>
-                            Découvrir notre méthode
-                        </Button>
                     </motion.div>
                 </motion.div>
             </div>
