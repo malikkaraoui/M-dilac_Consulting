@@ -35,7 +35,7 @@ export default function Testimonials() {
                 >
                     <h2 className="text-3xl md:text-5xl font-bold text-primary mb-4">Ce que disent nos clients</h2>
                     <p className="text-secondary text-lg max-w-2xl mx-auto">
-                        La confiance de médecins qui nous ont fait confiance pour leur protection et leur avenir.
+                        Découvrez leurs témoignagnes sur l'accompagnement et la protection de leur avenir.
                     </p>
                 </motion.div>
 

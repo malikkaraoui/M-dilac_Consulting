@@ -3,116 +3,109 @@ import { motion, animate, useMotionValue, useTransform } from 'framer-motion'
 import { Shield, TrendingUp, Briefcase, FileText, Scale, Gavel, Stethoscope, Landmark } from 'lucide-react'
 import { Button } from '../ui/Button'
 
-// Premier carrousel (ANALYSE 3)
+// Premier carrousel (Assurance 1)
 const FIRST_CARDS = [
     {
         id: 1,
-        title: "Analyse des cyberattaques en Suisse",
+        title: "Assurance perte de gain",
         icon: Shield,
-        desc: "Cybersécurité et risques numériques.",
-        pdf: "/PDF/ANALYSE 3/Analyse-Cyberattaques-en-Suisse.pdf"
+        desc: "Protégez vos revenus en cas d'incapacité.",
+        pdf: "/PDF/Assurance 1/Assurance-Perte-de-Gain.pdf"
     },
     {
         id: 2,
         title: "Boostez votre retraite",
         icon: TrendingUp,
         desc: "Stratégies pour renforcer votre prévoyance.",
-        pdf: "/PDF/ANALYSE 3/Boostez-votre-retraite.pdf"
+        pdf: "/PDF/Assurance 1/Boostez-votre-retraite.pdf"
     },
     {
         id: 3,
+        title: "Hypothèques pour médecins",
+        icon: Landmark,
+        desc: "Solutions de financement immobilier adaptées.",
+        pdf: "/PDF/Assurance 1/Hypotheques-pour-Medecins.pdf"
+    },
+    {
+        id: 4,
+        title: "Responsabilité civile professionnelle",
+        icon: Gavel,
+        desc: "Couverture adaptée aux médecins indépendants.",
+        pdf: "/PDF/Assurance 1/La-Responsabilite-Civile-Professionnelle-pour-Medecins-Independants.pdf"
+    },
+    {
+        id: 5,
+        title: "Les méandres de la LPP",
+        icon: FileText,
+        desc: "Comprendre la prévoyance professionnelle.",
+        pdf: "/PDF/Assurance 1/Les-Meandres-de-la-LPP.pdf"
+    },
+    {
+        id: 6,
+        title: "Les assurances sociales en Suisse",
+        icon: Briefcase,
+        desc: "Panorama des couvertures sociales.",
+        pdf: "/PDF/Assurance 1/Les-assurances-sociales-en-Suisse.pdf"
+    },
+    {
+        id: 7,
+        title: "Protection juridique pour médecins",
+        icon: Scale,
+        desc: "Sécurisez votre pratique au quotidien.",
+        pdf: "/PDF/Assurance 1/Protection-Juridique-pour-Medecins.pdf"
+    }
+]
+
+// Deuxième carrousel (ANALYSE 3)
+const SECOND_CARDS = [
+    {
+        id: 8,
+        title: "Analyse des cyberattaques en Suisse",
+        icon: Shield,
+        desc: "Cybersécurité et risques numériques.",
+        pdf: "/PDF/ANALYSE 3/Analyse-Cyberattaques-en-Suisse.pdf"
+    },
+    {
+        id: 9,
         title: "Comment lancer votre cabinet médical",
         icon: Briefcase,
         desc: "Les étapes clés pour démarrer sereinement.",
         pdf: "/PDF/ANALYSE 3/Comment-lancer-votre-cabinet-medical.pdf"
     },
     {
-        id: 4,
-        title: "Hypothèques pour médecins",
-        icon: Landmark,
-        desc: "Solutions de financement immobilier adaptées.",
-        pdf: "/PDF/ANALYSE 3/Hypotheques-pour-Medecins.pdf"
-    },
-    {
-        id: 5,
-        title: "Optimisation des structures juridiques",
-        icon: Gavel,
-        desc: "Choisir la structure adaptée au cabinet.",
-        pdf: "/PDF/ANALYSE 3/Optimisation-des-Structures-Juridiques-pour-Cabinets-Medicaux.pdf"
-    },
-    {
-        id: 6,
-        title: "Planification financière pour médecins",
-        icon: FileText,
-        desc: "Construire une stratégie patrimoniale solide.",
-        pdf: "/PDF/ANALYSE 3/Planification-Financiere-pour-Medecins.pdf"
-    },
-    {
-        id: 7,
-        title: "Prévoyance et fiscalité",
-        icon: Scale,
-        desc: "Le duo gagnant pour votre avenir.",
-        pdf: "/PDF/ANALYSE 3/Prevoyance-and-Fiscalite-Le-Duo-Gagnant-pour-Votre-Avenir.pdf"
-    },
-    {
-        id: 8,
-        title: "Reprise d'un cabinet médical",
-        icon: Stethoscope,
-        desc: "Les clés pour reprendre un cabinet avec succès.",
-        pdf: "/PDF/ANALYSE 3/Reprise-dun-cabinet-medical.pdf"
-    }
-]
-
-// Deuxième carrousel (analyse 2)
-const SECOND_CARDS = [
-    {
-        id: 7,
-        title: "Analyse des cyberattaques en Suisse",
-        icon: Shield,
-        desc: "Cybersécurité et risques numériques.",
-        pdf: "/PDF/analyse 2/Analyse-Cyberattaques-en-Suisse.pdf"
-    },
-    {
-        id: 8,
-        title: "Comment lancer votre cabinet médical",
-        icon: Briefcase,
-        desc: "Les étapes clés pour démarrer sereinement.",
-        pdf: "/PDF/analyse 2/Comment-lancer-votre-cabinet-medical.pdf"
-    },
-    {
-        id: 9,
-        title: "Hypothèques pour médecins",
-        icon: Landmark,
-        desc: "Solutions de financement immobilier adaptées.",
-        pdf: "/PDF/assurance/Hypotheques-pour-Medecins.pdf"
-    },
-    {
         id: 10,
         title: "La balance du TARDOC",
         icon: Scale,
         desc: "Comprendre les enjeux tarifaires.",
-        pdf: "/PDF/analyse 2/La-balance-du-Tardoc.pdf"
+        pdf: "/PDF/ANALYSE 3/La-balance-du-Tardoc.pdf"
     },
     {
         id: 11,
         title: "Optimisation des structures juridiques",
         icon: Gavel,
         desc: "Choisir la structure adaptée au cabinet.",
-        pdf: "/PDF/analyse 2/Optimisation-des-Structures-Juridiques-pour-Cabinets-Medicaux.pdf"
+        pdf: "/PDF/ANALYSE 3/Optimisation-des-Structures-Juridiques-pour-Cabinets-Medicaux.pdf"
     },
     {
         id: 12,
         title: "Planification financière pour médecins",
         icon: FileText,
         desc: "Construire une stratégie patrimoniale solide.",
-        pdf: "/PDF/analyse 2/Planification-Financiere-pour-Medecins.pdf"
+        pdf: "/PDF/ANALYSE 3/Planification-Financiere-pour-Medecins.pdf"
     },
     {
         id: 13,
         title: "Prévoyance et fiscalité",
         icon: TrendingUp,
         desc: "Le duo gagnant pour votre avenir.",
-        pdf: "/PDF/analyse 2/Prevoyance-and-Fiscalite-Le-Duo-Gagnant-pour-Votre-Avenir.pdf"
+        pdf: "/PDF/ANALYSE 3/Prevoyance-and-Fiscalite-Le-Duo-Gagnant-pour-Votre-Avenir.pdf"
+    },
+    {
+        id: 14,
+        title: "Reprise d'un cabinet médical",
+        icon: Stethoscope,
+        desc: "Les clés pour reprendre un cabinet avec succès.",
+        pdf: "/PDF/ANALYSE 3/Reprise-dun-cabinet-medical.pdf"
     }
 ]
 
@@ -344,7 +337,7 @@ export function CarouselSectionFirst() {
                 <p className="text-secondary max-w-xl mx-auto text-lg">Accédez directement à nos guides PDF.</p>
             </div>
 
-            <CarouselRing cards={FIRST_CARDS} visibleCardCount={8} />
+            <CarouselRing cards={FIRST_CARDS} visibleCardCount={7} />
         </section>
     )
 }
