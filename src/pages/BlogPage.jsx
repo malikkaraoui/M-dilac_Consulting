@@ -10,11 +10,7 @@ const faqItems = [
         answer: "Le plus tôt possible ! Idéalement dès le début de votre activité indépendante. Plus vous commencez tôt, plus vous bénéficiez de l'effet des intérêts composés et plus votre cotisation mensuelle sera faible pour atteindre vos objectifs."
     },
     {
-        question: "Quelle est la différence entre le 2ème et le 3ème pilier ?",
-        answer: "Le 2ème pilier (LPP) est obligatoire pour les salariés et facultatif pour les indépendants. Le 3ème pilier est une prévoyance privée facultative qui offre des avantages fiscaux importants. Pour les médecins indépendants, le 3ème pilier lié (3a) permet de déduire jusqu'à CHF 36'288 par an (montant 2025)."
-    },
-    {
-        question: "Comment évaluer le prix d'un cabinet à reprendre ?",
+        question: "Comment évaluer le prix d'un cabinet médical à reprendre ?",
         answer: "L'évaluation comprend plusieurs éléments : le goodwill (clientèle), le matériel médical, les locaux, et les contrats en cours. En général, le goodwill représente 70-100% du chiffre d'affaires annuel. Il est essentiel de faire appel à un expert pour une évaluation objective."
     },
     {
@@ -24,6 +20,14 @@ const faqItems = [
     {
         question: "Quelle couverture d'assurance perte de gain choisir ?",
         answer: "Privilégiez une couverture de 80% de votre revenu avec un délai d'attente adapté à vos réserves (30, 60 ou 90 jours). Vérifiez les exclusions, notamment pour les affections psychiques, et optez pour une durée de versement jusqu'à l'âge de la retraite."
+    },
+    {
+        question: "À qui s’adresse Médilac Consulting ?",
+        answer: "Médilac Consulting s’adresse aux médecins et aux professionnels paramédicaux exerçant en Suisse, qu’ils soient indépendants, associés ou salariés, ainsi qu’aux cabinets et structures de soins. Nous accompagnons aussi bien les professionnels en début d’activité que ceux disposant déjà d’une structure établie."
+    },
+    {
+        question: "Puis-je conserver mes assurances ou partenaires actuels ?",
+        answer: "Oui. Notre rôle n’est pas de tout changer, mais d’analyser l’existant et de l’optimiser si nécessaire. Vous restez libre de conserver vos partenaires actuels."
     }
 ];
 
