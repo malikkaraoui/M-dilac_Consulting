@@ -112,7 +112,9 @@ const SECOND_CARDS = [
 function CarouselRing({ cards, visibleCardCount }) {
     const [isAnimating, setIsAnimating] = useState(false)
     const [isPaused, setIsPaused] = useState(false)
+    const [isVisible, setIsVisible] = useState(false)
     const isDraggingRef = useRef(false)
+    const containerRef = useRef(null)
     const rotation = useMotionValue(0)
     const wheelTimeoutRef = useRef(null)
     const animationRef = useRef(null)
@@ -134,14 +136,25 @@ function CarouselRing({ cards, visibleCardCount }) {
     )
 
     useEffect(() => {
+        const el = containerRef.current
+        if (!el) return
+        const observer = new IntersectionObserver(
+            ([entry]) => setIsVisible(entry.isIntersecting),
+            { threshold: 0.3 }
+        )
+        observer.observe(el)
+        return () => observer.disconnect()
+    }, [])
+
+    useEffect(() => {
         let interval
-        if (!isPaused && !isAnimating) {
+        if (!isPaused && !isAnimating && isVisible) {
             interval = setInterval(() => {
                 rotateOnce('next')
             }, 3000)
         }
         return () => clearInterval(interval)
-    }, [isPaused, isAnimating])
+    }, [isPaused, isAnimating, isVisible])
 
     const handleCardClick = (card) => {
         if (isDraggingRef.current) return
@@ -214,7 +227,8 @@ function CarouselRing({ cards, visibleCardCount }) {
 
     return (
         <motion.div
-            className="relative h-[600px] w-full flex items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing touch-none"
+            ref={containerRef}
+            className="relative h-[600px] w-full flex items-center justify-center perspective-[1200px] cursor-grab active:cursor-grabbing touch-pan-y"
             onPanStart={() => {
                 setIsPaused(true)
                 isDraggingRef.current = true
@@ -229,8 +243,6 @@ function CarouselRing({ cards, visibleCardCount }) {
                 rotation.set(startRotationRef.current + info.offset.x * sensitivity)
             }}
             onPanEnd={(_, info) => {
-                setIsPaused(false)
-
                 const velocity = info.velocity.x
                 const offset = info.offset.x
 
@@ -250,9 +262,11 @@ function CarouselRing({ cards, visibleCardCount }) {
 
                 animateToPosition(targetRotation)
 
+                // Garder la pause active le temps que l'animation de snap finisse
                 setTimeout(() => {
                     isDraggingRef.current = false
-                }, 50)
+                    setIsPaused(false)
+                }, 600)
             }}
             onWheel={(e) => {
                 if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
@@ -268,8 +282,8 @@ function CarouselRing({ cards, visibleCardCount }) {
                     }, 200)
                 }
             }}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
+            onPointerEnter={() => setIsPaused(true)}
+            onPointerLeave={() => setIsPaused(false)}
         >
             <motion.div
                 className="relative w-[180px] h-[260px] md:w-[240px] md:h-[340px] preserve-3d"
