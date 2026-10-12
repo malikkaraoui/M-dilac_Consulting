@@ -111,7 +111,7 @@ export default function Contact() {
                         <div className="text-white">
                             <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">Demande de contact</h3>
                             <div className="space-y-4 text-sm text-blue-200">
-                                <p>📍 Rue de la Corraterie 10, 1204 Genève</p>
+                                <p>📍 Chemin de la Pierrière 21, 1292 Chambésy</p>
                                 <a
                                     href="mailto:vincent.limbach@medilac.ch"
                                     className="flex items-center gap-2 hover:text-white transition-colors w-fit"
